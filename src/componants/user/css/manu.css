@@ -1,0 +1,6 @@
+.header_menu{
+    /* border-radius: 50px; */
+    background: linear-gradient(145deg, #ffffff, #e1e1e1);
+    box-shadow:  5px 5px 10px #b4b4b4,
+                 -5px -5px 10px #ffffff;
+}
