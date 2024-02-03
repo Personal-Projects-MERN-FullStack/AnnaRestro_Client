@@ -13,7 +13,7 @@ const Navbar = () => {
   const [menu, setmenu] = useState(true);
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0">
+      <div className="fixed bottom-0 left-0 right-0 md:hidden" >
         <div className="flex justify-around -black pb-4">
           <div className="item1 h-12 flex items-center justify-center">
             <span
