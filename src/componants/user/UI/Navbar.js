@@ -65,7 +65,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/menu"
+            to="/wallet"
             className="item1 h-16 w-full flex flex-col items-center justify-center"
           >
             <span className="text-2xl   p-1 ">

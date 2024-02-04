@@ -5,6 +5,7 @@ import Menu from "./componants/user/Menu";
 import Navbar from "./componants/user/UI/Navbar";
 import Home from "./componants/user/Home";
 import Cart from "./componants/user/Cart";
+import Wallet from "./componants/user/Wallet";
 // Home Components
 
 const AdminLogin = () => <div>Admin Login</div>;
@@ -61,7 +62,7 @@ function AppRoutes() {
         { path: "menu", element: <Menu /> },
         { path: "dashboard", element: <UserProfile /> },
         { path: "profile", element: <UserWallet /> },
-        { path: "wallet", element: <UserWallet /> },
+        { path: "wallet", element: <Wallet /> },
         { path: "orders", element: <UserWallet /> },
         { path: "cart", element: <Cart /> },
       ],
