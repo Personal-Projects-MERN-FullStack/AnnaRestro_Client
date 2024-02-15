@@ -55,7 +55,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/menu"
+            to="/orders"
             className="item1 h-16 w-full flex flex-col items-center justify-center"
           >
             <span className="text-2xl   p-1 ">
@@ -81,7 +81,7 @@ const Navbar = () => {
             <span className="text-2xl   p-1 ">
               <FaOpencart />
             </span>
-            <div className="text-gray-500 text-xs font-bold">Cart</div>
+            <div className="text-gray-500 text-xs font-bold">Basket</div>
           </Link>
         </div>
 

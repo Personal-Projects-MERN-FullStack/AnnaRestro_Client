@@ -38,19 +38,7 @@ const Wallet = () => {
           <div className=" w-full h-full overflow-auto -4 -black">
             <Transaction/>
             <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
+           
         </div>
         </div>
         

@@ -6,6 +6,11 @@ import Navbar from "./componants/user/UI/Navbar";
 import Home from "./componants/user/Home";
 import Cart from "./componants/user/Cart";
 import Wallet from "./componants/user/Wallet";
+import Notifcation from "./componants/user/UI/Notifcation";
+import WebSocketComponent from "./componants/user/WebSocketComponent";
+import Search from "./componants/user/subpages/Search";
+import Orders from "./componants/user/Orders";
+import OrderStatus from "./componants/user/subpages/OrderStatus";
 // Home Components
 
 const AdminLogin = () => <div>Admin Login</div>;
@@ -53,17 +58,49 @@ function AppRoutes() {
             </div>
             <div className="text-white text-xl">MOBILE VIEW ONLY</div>
           </div>
+
           <Navbar />
+          {/* <Notifcation/> */}
         </div>
       ),
       children: [
-        { path: "", element: <Home /> },
+        {
+          path: "",
+          element: <Home />,
+          // <WebSocketComponent />
+        },
         { path: "login", element: <Userlogin /> },
-        { path: "menu", element: <Menu /> },
+        {
+          path: "menu",
+          element: (
+            <>
+              <Outlet />
+            </>
+          ),
+          children: [
+            { path: "", element: <Menu /> },
+            { path: "search", element: <Search /> },
+          ],
+        },
         { path: "dashboard", element: <UserProfile /> },
         { path: "profile", element: <UserWallet /> },
-        { path: "wallet", element: <Wallet /> },
-        { path: "orders", element: <UserWallet /> },
+        {
+          path: "wallet",
+          element: <Outlet />,
+          children: [
+            { path: "", element: <Wallet /> },
+            { path: "add", element: <Wallet /> },
+            { path: "paymentSuccesful", element: <Wallet /> },
+          ],
+        },
+        {
+          path: "orders",
+          element: <Outlet />,
+          children: [
+            { path: "", element: <Orders /> },
+            { path: "status", element: <OrderStatus /> },
+          ],
+        },
         { path: "cart", element: <Cart /> },
       ],
     },

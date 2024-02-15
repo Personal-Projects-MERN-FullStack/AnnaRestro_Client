@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/manu.css";
 import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import { LuSearchCode } from "react-icons/lu";
+import { Link } from "react-router-dom";
+import Search from "./subpages/Search";
 const Menu = () => {
+  const [search, setsearch] = useState(false);
   return (
     <div className="flex flex-col  w-full fixed top-0 right-0 left-0 bottom-0 h-screen">
-      <div className="  top-0 left-0 right-0 h-[110px] w-full">
+      <div className={`  top-0 left-0 right-0 ${search?"h-[110px]":"h-[60px]"} w-full`}>
         <div className=" h-full bg-white shadow-sm flex flex-col ">
-          <div className="h-3/6 w-full flex">
+          <div className={`${search?"h-3/6":"h-full"} w-full flex`}>
             <div className="w-3/6 h-full flex justify-start pl-8 text-2xl font-bold items-center">
               Our Menu
             </div>
             <div className="w-3/6 h-full flex justify-end items-center pr-3 text-3xl">
-            <LuSearchCode />
+              <LuSearchCode onClick={()=>{setsearch(!search)}} />
             </div>
           </div>
-          <div className="h-3/6 w-full flex items-center ml-8 space-x-2">
+          
+            {search &&<div className="h-3/6 w-full flex items-center ml-8 space-x-2"> <Search />  </div>}
+        
+          {/* <div className="h-3/6 w-full flex items-center ml-8 space-x-2">
             <div className="border-2 border-black flex justify-center items-center rounded-xl px-6 py-1">
               Veg
             </div>
             <div className="border-2 border-black flex justify-center items-center rounded-xl px-6 py-1">
               Non-Veg
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="h-5/6 flex w-full ">

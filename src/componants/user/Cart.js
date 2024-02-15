@@ -89,7 +89,7 @@ const Cart = () => {
         </div>
         <div className="w-3/6 flex justify-end pr-2 items-center ">
           <div className=" flex justify-end items-center text-white text-bold bg-red-700  px-8 rounded-md  py-2">
-            Proceed
+           Place Order
           </div>
         </div>
       </div>

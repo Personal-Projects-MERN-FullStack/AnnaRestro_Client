@@ -3,7 +3,7 @@ import AddtoCart from "./AddtoCart";
 
 const Bcard = ({ img, name, price, desc }) => {
   return (
-    <div className="h-44 mx-1  my-2 bg-white rounded-xl flex flex-col">
+    <div className="h-44 mx-1   my-2 bg-white rounded-xl flex flex-col">
       <div className=" w-full font-bold m-[8px]">{name}</div>
       <div className="flex w-full h-full">
         <div className="w-3/6   h-full flex justify-center items-center">
@@ -15,7 +15,7 @@ const Bcard = ({ img, name, price, desc }) => {
           </div>
           <div className="my-3">₹{price}</div>
           <div>
-            <AddtoCart price={price}/>
+            <AddtoCart price={price} btnname={"Add to basket"}/>
           </div>
         </div>
       </div>
