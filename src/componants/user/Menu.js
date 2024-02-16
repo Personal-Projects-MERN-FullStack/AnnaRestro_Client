@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./css/manu.css";
 import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
-import { LuSearchCode } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 import Search from "./subpages/Search";
 const Menu = () => {
   const [search, setsearch] = useState(false);
@@ -15,12 +14,12 @@ const Menu = () => {
             <div className="w-3/6 h-full flex justify-start pl-8 text-2xl font-bold items-center">
               Our Menu
             </div>
-            <div className="w-3/6 h-full flex justify-end items-center pr-3 text-3xl">
-              <LuSearchCode onClick={()=>{setsearch(!search)}} />
+            <div className="w-3/6 h-full flex justify-end items-center mr-8 text-xl">
+              <FaSearch className="" onClick={()=>{setsearch(!search)}} />
             </div>
           </div>
           
-            {search &&<div className="h-3/6 w-full flex items-center ml-8 space-x-2"> <Search />  </div>}
+            {search &&<div className="h-3/6 w-full flex items-center  "> <Search />  </div>}
         
           {/* <div className="h-3/6 w-full flex items-center ml-8 space-x-2">
             <div className="border-2 border-black flex justify-center items-center rounded-xl px-6 py-1">

@@ -41,43 +41,7 @@ const Cart = () => {
           qty="1"
         />
 
-        <Cartitem
-          image="/fitems/dosa.png"
-          price="40"
-          name="Dosa - Special Dosa with onion and cheese"
-          qty="2"
-        />
-        <Cartitem
-          image="/fitems/mdosa.png"
-          price="50"
-          name="Masala Dosa With chatany"
-          qty="4"
-        />
-        <Cartitem
-          image="/fitems/idli.png"
-          price="30"
-          name="Idli  - Also Avaible with the Chatany and sambar"
-          qty="2"
-        />
-
-        <Cartitem
-          image="/fitems/dosa.png"
-          price="40"
-          name="Dosa - Special Dosa with onion and cheese"
-          qty="2"
-        />
-        <Cartitem
-          image="/fitems/mdosa.png"
-          price="50"
-          name="Masala Dosa With chatany"
-          qty="4"
-        />
-        <Cartitem
-          image="/fitems/idli.png"
-          price="30"
-          name="Idli  - Also Avaible with the Chatany and sambar"
-          qty="2"
-        />
+        
       </div>
 
       <div className="fixed left-0 right-0 bottom-0 text-white flex bg-black h-14">
