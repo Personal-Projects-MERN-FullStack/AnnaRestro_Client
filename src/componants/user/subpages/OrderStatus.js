@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OrderListItem from "../UI/OrderListItem";
 import { IoReturnUpBackOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const OrderStatus = () => {
+  const auth = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!auth) {
+      navigate("/login");
+    }
+  }, [auth,navigate]);
+
   return (
     <div className=" py-8 px-6 fixed top-0 left-0 right-0 bottom-0 overflow-auto flex flex-col">
       <Link to="/orders" className="text-2xl font-bold">

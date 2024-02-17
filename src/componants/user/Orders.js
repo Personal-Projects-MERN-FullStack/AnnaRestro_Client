@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OrderItem from "./UI/OrderItem";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Orders = () => {
+  const auth = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!auth) {
+      navigate("/login");
+    }
+  }, [auth,navigate]);
+
   const [section, setsection] = useState(0)
   return (
     <div className="h-full fixed top-0 bottom-0 left-0 right-0 w-full bg-white">

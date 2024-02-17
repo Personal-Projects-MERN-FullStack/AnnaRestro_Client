@@ -1,22 +1,36 @@
-import React from "react";
 import "./css/userlogin.css";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginHandler, SignupHandler } from "../../store/actions/auth-actions";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
-const userlogin = () => {
+const Userlogin = () => {
+  const auth = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (auth) {
+      navigate("/menu");
+    }
+  }, [auth,navigate]);
+
+  const dispatch = useDispatch();
   const onRegsiterHandler = (e) => {
     e.preventDefault();
     const userRegisterDetails = {
-      username : e.target.username.value,
-      email :e.target.email.value,
-      pass : e.target.pswd.value
-    }
+      username: e.target.username.value,
+      email: e.target.email.value,
+      pass: e.target.pswd.value,
+    };
+    dispatch(SignupHandler(userRegisterDetails));
   };
   const onLoginHandler = (e) => {
     e.preventDefault();
     const userLoginDetails = {
-      email :e.target.email.value,
-      pass : e.target.pswd.value
-    }
-    
+      email: e.target.email.value,
+      pass: e.target.pswd.value,
+    };
+
+    dispatch(LoginHandler(userLoginDetails));
   };
   return (
     <div className="flex justify-center items-center h-screen ">
@@ -80,4 +94,4 @@ const userlogin = () => {
   );
 };
 
-export default userlogin;
+export default Userlogin;

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import WalletCard from "./UI/WalletCard";
 import "./css/Wallet.css";
 import { IoNotifications } from "react-icons/io5";
-import { FaFilterCircleDollar } from "react-icons/fa6";
 import Transaction from "./UI/Transaction";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { auth } from "../../store/handlers/auth-handler";
+
 const Wallet = () => {
+  const loggedin = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!loggedin) {
+      navigate("/login");
+    }
+  }, [loggedin,navigate]);
+
   return (
     <div className="container h-screen  fixed top-0 left-0 right-0 bottom-0">
       <div className=" h-16 text-white  fixed top-0 left-0 right-0 flex">
@@ -20,7 +32,10 @@ const Wallet = () => {
         <div className="w-2/6  h-full flex justify-center items-center text-sm font-bold font-serif">
           My Wallet
         </div>
-        <div className="w-2/6 text-2xl  h-full flex justify-end pr-6 items-center">
+        <div
+          className="w-2/6 text-2xl  h-full flex justify-end pr-6 items-center"
+          onClick={() => dispatch(auth.Logout())}
+        >
           <IoNotifications />
         </div>
       </div>
@@ -36,19 +51,17 @@ const Wallet = () => {
             </div>
           </div>
           <div className=" w-full h-full overflow-auto -4 -black">
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-            <Transaction/>
-           
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+            <Transaction />
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );
