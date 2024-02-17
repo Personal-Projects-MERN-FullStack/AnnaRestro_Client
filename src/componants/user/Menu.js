@@ -8,12 +8,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 const Menu = () => {
   const auth = useSelector((state) => state.auth.auth);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!auth) {
-      navigate("/login");
-    }
-  }, [auth,navigate]);
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (!auth) {
+  //     navigate("/login");
+  //   }
+  // }, [auth,navigate]);
 
   const [search, setsearch] = useState(false);
   return (
