@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./css/manu.css";
 import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import { FaSearch } from "react-icons/fa";
 import Search from "./subpages/Search";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 const Menu = () => {
-  const auth = useSelector((state) => state.auth.auth);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!auth) {
-  //     navigate("/login");
-  //   }
-  // }, [auth,navigate]);
 
+  
   const [search, setsearch] = useState(false);
   return (
     <div className="flex flex-col  w-full fixed top-0 right-0 left-0 bottom-0 h-screen">
