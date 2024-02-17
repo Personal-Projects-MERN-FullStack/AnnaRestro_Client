@@ -8,7 +8,7 @@ const Notification = () => {
   const dispatch = useDispatch();
   setTimeout(() => {
     dispatch(
-      ui.setNotification({
+      ui.SetNotification({
         active: false,
         msg: "",
         path: "",

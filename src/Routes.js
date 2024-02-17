@@ -28,7 +28,7 @@ function AppRoutes() {
       path: "/",
       element: (
         <div className="bg-white w-full h-screen">
-          {notify.status && <Notification />}
+          {notify.active && <Notification />}
           <Outlet />
 
           <div className="md:fixed text-6xl md:bottom-0 md:top-0 flex-col md:left-0 md:right-0 md:bg-black md:h-screen md:w-full invisible md:visible flex justify-center text-white items-center">

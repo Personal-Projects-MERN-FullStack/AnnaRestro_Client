@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/cartbtn.css";
 import { useDispatch, useSelector } from "react-redux";
-import ui from "../../../store/handlers/Ui-handler";
+import { ui } from "../../../store/handlers/Ui-handler";
 const AddtoCart = ({ price, btnname }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.auth);

@@ -8,15 +8,12 @@ let initialState = {
   currentpage: "/",
 };
 
-
-
-
 const uihandler = createSlice({
   name: "ui",
   initialState,
   reducers: {
     SetNotification(state, action, payload) {
-        console.log(action.payload)
+      state.notification = action.payload;
     },
   },
 });
