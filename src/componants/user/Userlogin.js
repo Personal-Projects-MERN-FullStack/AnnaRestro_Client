@@ -19,7 +19,7 @@ const Userlogin = () => {
     const userRegisterDetails = {
       username: e.target.username.value,
       email: e.target.email.value,
-      pass: e.target.pswd.value,
+      password: e.target.pswd.value,
     };
     dispatch(SignupHandler(userRegisterDetails));
   };
@@ -27,7 +27,7 @@ const Userlogin = () => {
     e.preventDefault();
     const userLoginDetails = {
       email: e.target.email.value,
-      pass: e.target.pswd.value,
+      password: e.target.pswd.value,
     };
 
     dispatch(LoginHandler(userLoginDetails));

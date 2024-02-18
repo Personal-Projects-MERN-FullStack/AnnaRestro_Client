@@ -1,4 +1,4 @@
-import { useRoutes, Outlet } from "react-router";
+import { useRoutes, Outlet, useNavigate } from "react-router";
 import NotFound from "./componants/NotFound";
 import Userlogin from "./componants/user/Userlogin";
 import Menu from "./componants/user/Menu";
@@ -10,7 +10,13 @@ import Search from "./componants/user/subpages/Search";
 import Orders from "./componants/user/Orders";
 import OrderStatus from "./componants/user/subpages/OrderStatus";
 import Notification from "./componants/user/UI/Notification";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  Currentpagehandler,
+  LastPageUpdater,
+  authVefication,
+} from "./store/actions/ui-actions";
 // Home Components
 
 // User Dashboard Components
@@ -22,6 +28,26 @@ const AdminHome = () => <div>Admin Home Page</div>;
 const AdminProfile = () => <div>Admin Profile</div>;
 
 function AppRoutes() {
+  const dispatch = useDispatch();
+  const [start, setstart] = useState(0);
+  const auth = useSelector((state) => state.auth.auth);
+  const curl = useSelector((state) => state.ui.currentpage);
+  const currentUrl = window.location.href;
+  const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(LastPageUpdater());
+    dispatch(authVefication(curl));
+  }, []);
+
+  useEffect(() => {
+    if (start > 1) {
+      dispatch(Currentpagehandler());
+    }
+
+    setstart(start + 1);
+    console.log(curl);
+  }, [currentUrl, dispatch, curl]);
+
   const notify = useSelector((state) => state.ui.notification);
   const routes = useRoutes([
     {

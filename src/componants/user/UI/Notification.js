@@ -10,10 +10,8 @@ const Notification = () => {
     dispatch(
       ui.SetNotification({
         active: false,
-        msg: "",
-        path: "",
-        pathname: "",
-      })
+        msg: ""
+            })
     );
   }, 2000);
   return (
