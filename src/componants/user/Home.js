@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const auth = useSelector((state) => state.auth.auth);
+  // const auth = useSelector((state) => state.auth.auth);
   
   return (
     <div className="bg-gray-200 h-screen">

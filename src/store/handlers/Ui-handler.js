@@ -15,6 +15,9 @@ const uihandler = createSlice({
     SetNotification(state, action, payload) {
       state.notification = action.payload;
     },
+    SetCurrentPage(state,action,payload){
+      state.currentpage = action.payload
+    }
   },
 });
 export default uihandler.reducer;

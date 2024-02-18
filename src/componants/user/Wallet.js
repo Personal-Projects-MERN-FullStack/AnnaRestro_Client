@@ -5,7 +5,7 @@ import { IoNotifications } from "react-icons/io5";
 import Transaction from "./UI/Transaction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { auth } from "../../store/handlers/auth-handler";
+import { LogoutHandler } from "../../store/actions/ui-actions";
 
 const Wallet = () => {
   const loggedin = useSelector((state) => state.auth.auth);
@@ -15,7 +15,7 @@ const Wallet = () => {
     if (!loggedin) {
       navigate("/login");
     }
-  }, [loggedin,navigate]);
+  }, [loggedin, navigate]);
 
   return (
     <div className="container h-screen  fixed top-0 left-0 right-0 bottom-0">
@@ -34,7 +34,7 @@ const Wallet = () => {
         </div>
         <div
           className="w-2/6 text-2xl  h-full flex justify-end pr-6 items-center"
-          onClick={() => dispatch(auth.Logout())}
+          onClick={() => dispatch(LogoutHandler())}
         >
           <IoNotifications />
         </div>
