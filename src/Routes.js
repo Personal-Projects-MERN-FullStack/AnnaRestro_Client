@@ -17,6 +17,7 @@ import {
   LastPageUpdater,
   authVefication,
 } from "./store/actions/ui-actions";
+import useLoadMenu from "./hooks/useLoadMenu";
 // Home Components
 
 // User Dashboard Components
@@ -34,6 +35,7 @@ function AppRoutes() {
   const curl = useSelector((state) => state.ui.currentpage);
   const currentUrl = window.location.href;
   const navigate = useNavigate();
+  useLoadMenu()
   useEffect(() => {
     dispatch(LastPageUpdater());
     dispatch(authVefication(curl));
@@ -45,7 +47,7 @@ function AppRoutes() {
     }
 
     setstart(start + 1);
-    console.log(curl);
+    // console.log(curl);
   }, [currentUrl, dispatch, curl]);
 
   const notify = useSelector((state) => state.ui.notification);
