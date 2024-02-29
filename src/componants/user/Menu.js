@@ -1,13 +1,20 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import "./css/manu.css";
 import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import { FaSearch } from "react-icons/fa";
 import Search from "./subpages/Search";
-const Menu = () => {
+// import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
-  
+const Menu = () => {
+  const menu = useSelector(state=>state.menu.menu)
+
+
   const [search, setsearch] = useState(false);
+  if (menu.isloading) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <div className="flex flex-col  w-full fixed top-0 right-0 left-0 bottom-0 h-screen">
       <div
@@ -32,8 +39,7 @@ const Menu = () => {
 
           {search && (
             <div className="h-3/6 w-full flex items-center  ">
-              {" "}
-              <Search />{" "}
+              <Search />
             </div>
           )}
 
@@ -58,42 +64,9 @@ const Menu = () => {
             BREAKFAST
           </div>
           <div className=" h-full  mx-2 mt-2   overflow-auto ">
-            <Bcard
-              img="/fitems/dosa.png"
-              name="Dosa"
-              desc="Best Dosa In Sihngahd Campus"
-              price="40"
-            />
-            <Bcard
-              img="/fitems/mdosa.png"
-              name=" MaSala Dosa"
-              desc="Try Our New MaSala Dosa "
-              price="50"
-            />
-            <Bcard
-              img="/fitems/idli.png"
-              name="Idli"
-              desc="Latur Special Idli "
-              price="30"
-            />
-            <Bcard
-              img="/fitems/dosa.png"
-              name="Dosa"
-              desc="Best Dosa In Sihngahd Campus"
-              price="40"
-            />
-            <Bcard
-              img="/fitems/dosa.png"
-              name="Dosa"
-              desc="Best Dosa In Sihngahd Campus"
-              price="40"
-            />
-            <Bcard
-              img="/fitems/dosa.png"
-              name="Dosa"
-              desc="Best Dosa In Sihngahd Campus"
-              price="40"
-            />
+            {menu.data.map((item) => {
+              return <Bcard item={item} />;
+            })}
           </div>
         </div>
       </div>
