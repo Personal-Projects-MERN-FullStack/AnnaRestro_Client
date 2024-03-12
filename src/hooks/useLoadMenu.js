@@ -29,7 +29,7 @@ const useLoadMenu = () => {
     }
   }
   const menu = useQuery({
-    queryKey: ["testing"],
+    queryKey: ["Menu_Items"],
     queryFn: fetchMenu,
     refetchInterval: 10000,
   });

@@ -9,7 +9,7 @@ const menuhandler = createSlice({
     initialState,
     reducers:{
         setmenu(state,action,payload){
-            console.log(action.payload,"inside store")
+            // console.log(action.payload,"inside store")
             state.menu = action.payload
         }
     }
