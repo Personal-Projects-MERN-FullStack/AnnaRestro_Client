@@ -17,6 +17,9 @@ const authhandler = createSlice({
         },
         setauthtoken(state,action,payload){
             state.authtoken = action.payload
+        },
+        setuser(state,action,payload){
+            state.user = action.payload
         }
     }
 })

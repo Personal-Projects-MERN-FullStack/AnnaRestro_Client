@@ -4,8 +4,10 @@ import { auth } from "../handlers/auth-handler";
 export const authVefication = (curl) => {
   return async (dispatch) => {
     const user = localStorage.getItem("user");
+    const userdata = JSON.parse(user);
     if (user) {
       dispatch(auth.Login());
+      dispatch(auth.setuser(userdata));
     } else {
       dispatch(auth.Logout());
     }
@@ -26,7 +28,11 @@ export const Currentpagehandler = () => {
     dispatch(ui.SetCurrentPage(currentUrl));
   };
 };
-
+export const Clearbasket=()=>{
+  return async (dispatch)=>{
+    dispatch(ui.Clearbasket())
+  }
+}
 export const LastPageUpdater = (auth) => {
   return async (dispatch) => {
     const user = localStorage.getItem("lastpage");
