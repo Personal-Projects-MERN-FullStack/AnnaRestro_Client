@@ -28,17 +28,20 @@ const Cart = () => {
   }, [auth, navigate]);
   async function placeOrder(customerId, products, total) {
     try {
-      const response = await fetch("http://localhost:5000/orders/place-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customer: customerId,
-          products: products,
-          total: total,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/orders/place-order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer: customerId,
+            products: products,
+            total: total,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -67,6 +70,7 @@ const Cart = () => {
   const onPlaceOrderHandler = () => {
     if (basket.length > 0) {
       setPlacing(true);
+      // console.log(basket)
       placeOrder(userdata.user.id, basket, calculateTotalPrice(basket));
     } else {
       dispatch(

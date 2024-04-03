@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   // const auth = useSelector((state) => state.auth.auth);
-  
+  const apiUrl = process.env.REACT_APP_API_URL;
+  console.log(apiUrl);
   return (
     <div className="bg-gray-200 h-screen">
       <div className="relative  ">

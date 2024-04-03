@@ -2,54 +2,13 @@ import React, { useEffect, useState } from "react";
 import OrderItem from "./UI/OrderItem";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-
-const orders = [
-  {
-    id: 1,
-    items: "Dosa and Idli",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "ongoing",
-  },
-  {
-    id: 2,
-    items: "Masala and Uttapa",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "complted",
-  },
-  {
-    id: 3,
-    items: "Masala and Uttapa",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "complted",
-  },
-  {
-    id: 4,
-    items: "Masala and Uttapa",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "complted",
-  },
-  {
-    id: 5,
-    items: "Dosa and Idli",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "cancelled",
-  },
-  {
-    id: 6,
-    items: "Dosa and Idli",
-    branch: "Main Branch",
-    OrderPlace_time: "18Feb 2024 15:23:54",
-    status: "cancelled",
-  },
-];
+import useOrders from "../../hooks/useOrders";
 
 const Orders = () => {
   const auth = useSelector((state) => state.auth.auth);
+  // const orders = useSelector((state) => state.ui.orders);
+  const orders = useOrders();
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!auth) {
@@ -92,27 +51,27 @@ const Orders = () => {
         </div>
       </div>
       <div className=" flex flex-col h-full overflow-auto  space-y-8">
-       {
-        orders.map((item)=>{
-          if(section === 0){
-            if(item.status === "ongoing"){
-             return <OrderItem item = {item}/>
-            }
-          }
-          if(section === 1){
-            if(item.status === "complted"){
-             return <OrderItem item = {item}/>
-            }
-          }
-          if(section === 2){
-            if(item.status === "cancelled"){
-             return <OrderItem item = {item}/>
-            }
-          }
-          return true;
-        })
-       }
-      
+        {!orders.isLoading
+          ? orders.data.map((item) => {
+              // console.log(item);
+              if (section === 0) {
+                if (item.status === "pending") {
+                  return <OrderItem item={item} />;
+                }
+              }
+              if (section === 1) {
+                if (item.status === "completed") {
+                  return <OrderItem item={item} />;
+                }
+              }
+              if (section === 2) {
+                if (item.status === "calcelled") {
+                  return <OrderItem item={item} />;
+                }
+              }
+              return true;
+            })
+          : "notloading"}
       </div>
     </div>
   );

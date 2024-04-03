@@ -6,7 +6,8 @@ let initialState = {
     msg: "Testing Case Buddy",
   },
   currentpage: "/",
-  basket:[]
+  basket:[],
+  orders:[]
 };
 
 const uihandler = createSlice({
@@ -45,7 +46,11 @@ const uihandler = createSlice({
     },
     Clearbasket(state, action, payload) {
       state.basket = [];
-    }
+    },
+    setorder(state,action,payload){
+      // console.log(action.payload,"inside store")
+      state.orders = action.payload
+  }
   },
 });
 export default uihandler.reducer;

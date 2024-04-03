@@ -35,7 +35,8 @@ function AppRoutes() {
   const curl = useSelector((state) => state.ui.currentpage);
   const currentUrl = window.location.href;
   const navigate = useNavigate();
-  useLoadMenu()
+  useLoadMenu();
+
   useEffect(() => {
     dispatch(LastPageUpdater());
     dispatch(authVefication(curl));
@@ -108,7 +109,7 @@ function AppRoutes() {
           element: <Outlet />,
           children: [
             { path: "", element: <Orders /> },
-            { path: "status", element: <OrderStatus /> },
+            { path: "status/:orderId", element: <OrderStatus /> },
           ],
         },
         { path: "cart", element: <Cart /> },

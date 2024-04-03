@@ -44,3 +44,10 @@ export const LastPageUpdater = (auth) => {
     }
   };
 };
+
+
+export const setorders = (data)=>{
+  return async (dispatch) =>{
+      dispatch(ui.setorder(data));
+  }
+}

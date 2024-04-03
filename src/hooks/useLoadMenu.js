@@ -7,15 +7,18 @@ const useLoadMenu = () => {
   const dispatch = useDispatch();
   async function fetchMenu() {
     try {
-      const response = await fetch("http://localhost:5000/menu/getmenu", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Add any other headers if needed
-        },
-        // You can add credentials like cookies, etc. if necessary
-        credentials: "same-origin",
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/menu/getmenu`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any other headers if needed
+          },
+          // You can add credentials like cookies, etc. if necessary
+          credentials: "same-origin",
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch menu data");
@@ -34,7 +37,7 @@ const useLoadMenu = () => {
     refetchInterval: 10000,
   });
 
-  dispatch(setMenu({data:menu.data,isloading:menu.isLoading}));
+  dispatch(setMenu({ data: menu.data, isloading: menu.isLoading }));
 };
 
 export default useLoadMenu;
