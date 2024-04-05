@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoginHandler, SignupHandler } from "../../store/actions/auth-actions";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Userlogin = () => {
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (auth) {
       navigate("/menu");
     }
-  }, [auth,navigate]);
+  }, [auth, navigate]);
 
   const dispatch = useDispatch();
+
   const onRegsiterHandler = (e) => {
     e.preventDefault();
     const userRegisterDetails = {
@@ -23,23 +26,30 @@ const Userlogin = () => {
     };
     dispatch(SignupHandler(userRegisterDetails));
   };
+
   const onLoginHandler = (e) => {
     e.preventDefault();
     const userLoginDetails = {
       email: e.target.email.value,
       password: e.target.pswd.value,
     };
-
     dispatch(LoginHandler(userLoginDetails));
   };
+
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <motion.div
+      className="flex justify-center items-center h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="main">
         <input type="checkbox" id="chk" aria-hidden="true" />
 
         <div className="login">
           <form className="form" onSubmit={onLoginHandler}>
-            <label for="chk" aria-hidden="true">
+            <label htmlFor="chk" aria-hidden="true">
               Log in
             </label>
             <input
@@ -62,7 +72,7 @@ const Userlogin = () => {
 
         <div className="register">
           <form className="form" onSubmit={onRegsiterHandler}>
-            <label for="chk" aria-hidden="true">
+            <label htmlFor="chk" aria-hidden="true">
               Register
             </label>
             <input
@@ -90,7 +100,7 @@ const Userlogin = () => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
