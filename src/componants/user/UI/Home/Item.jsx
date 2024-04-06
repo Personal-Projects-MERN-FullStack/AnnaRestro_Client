@@ -17,11 +17,12 @@ const Item = ({ image, name, qty, price }) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="bg-white rounded-2xl h-5/6 min-w-[130px]"
+          className="bg-white rounded-2xl h-5/6"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           exit={{ opacity: 0, y: -50 }}
+          style={{ minWidth: '130px', width: '130px' }}
         >
           <div className="h-3/6 w-full flex justify-between">
             <div className="flex justify-center items-center p-1 w-3/6 h-full">
