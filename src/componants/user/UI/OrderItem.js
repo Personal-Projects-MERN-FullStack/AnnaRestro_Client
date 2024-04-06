@@ -24,9 +24,9 @@ const OrderItem = ({ item }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: 20 }} // Initial animation state
+        initial={{ opacity: 0, y: -20 }} // Initial animation state
         animate={{ opacity: 1, y: 0 }} // Animation when component mounts
-        exit={{ opacity: 0, y: -20 }} // Animation when component unmounts
+        exit={{ opacity: 0, y: 20 }} // Animation when component unmounts
         transition={{ duration: 0.5 }} // Transition duration
         onClick={onOrderClickHandler}
         className="mx-4 border-2 border-gray-400 mt-4 h-[140px] rounded-xl flex flex-col"

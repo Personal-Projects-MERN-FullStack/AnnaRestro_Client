@@ -1,0 +1,18 @@
+.galada-regular {
+    font-family: "Galada", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .space-mono-regular {
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.merienda-uniquifier {
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}

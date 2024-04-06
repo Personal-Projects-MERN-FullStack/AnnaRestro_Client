@@ -5,8 +5,12 @@ import { CiShoppingCart } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import { CiSearch } from "react-icons/ci";
 import "./css/Home.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+  const menu = useSelector((state) => state.menu.menu);
+  const Navigate = useNavigate();
   return (
     <motion.div
       className="bg-gray-100 fixed top-0 left-0 right-0 bottom-0"
@@ -22,16 +26,23 @@ const Home = () => {
       >
         <div className="h-1/6 flex justify-between items-center  p-2">
           <motion.div className="flex space-x-2" whileHover={{ scale: 1.1 }}>
-            <div className="bg-white text-3xl h-12 w-12 rounded-full flex justify-center items-center">
+            <div
+              onClick={() => Navigate("/cart")}
+              className="bg-white text-3xl h-12 w-12 rounded-full flex justify-center items-center"
+            >
               <CiShoppingCart />
             </div>
-            <div className="bg-white font-thin text-2xl h-12 w-12 rounded-full flex justify-center items-center">
+            <div
+              onClick={() => Navigate("/profile")}
+              className="bg-white font-thin text-2xl h-12 w-12 rounded-full flex justify-center items-center"
+            >
               <VscAccount />
             </div>
           </motion.div>
           <motion.div
             className="bg-white  text-3xl h-10 w-24 rounded-full flex px-1 justify-start items-center"
             whileHover={{ scale: 1.1 }}
+            onClick={() => Navigate("/menu")}
           >
             <CiSearch />
           </motion.div>
@@ -65,42 +76,22 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <Item
-            image={"/fitems/idli.png"}
-            qty="1"
-            name="idli sambbar"
-            price="35"
-          />
-          <Item
-            image={"/fitems/mdosa.png"}
-            qty="1"
-            name="Msala Dosa"
-            price="50"
-          />
-          <Item
-            image={"/fitems/plain_dosa.png"}
-            qty="1"
-            name="Plain Dosa "
-            price="40"
-          />
-          <Item
-            image={"/fitems/idli.png"}
-            qty="1"
-            name="idli sambbar"
-            price="35"
-          />
-          <Item
-            image={"/fitems/mdosa.png"}
-            qty="1"
-            name="Msala Dosa"
-            price="50"
-          />
-          <Item
-            image={"/fitems/plain_dosa.png"}
-            qty="1"
-            name="Plain Dosa "
-            price="40"
-          />
+          {!menu || !menu.data ? (
+            // Display a message or component indicating no data
+            <div>No menu data available</div>
+          ) : (
+            // Map over menu.data and render Item components
+            menu.data.map((item, index) => (
+              <Item
+                item={item}
+                key={index}
+                image={item.imageUrl}
+                qty={item.productQty}
+                name={item.productName}
+                price={item.price}
+              />
+            ))
+          )}
         </motion.div>
       </motion.div>
       <motion.div

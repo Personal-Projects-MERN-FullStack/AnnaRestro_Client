@@ -18,6 +18,7 @@ import {
   authVefication,
 } from "./store/actions/ui-actions";
 import useLoadMenu from "./hooks/useLoadMenu";
+import Productpage from "./componants/user/Productpage";
 // Home Components
 
 // User Dashboard Components
@@ -91,6 +92,7 @@ function AppRoutes() {
           children: [
             { path: "", element: <Menu /> },
             { path: "search", element: <Search /> },
+            { path: "product/:pid", element: <Productpage /> },
           ],
         },
         { path: "dashboard", element: <UserProfile /> },

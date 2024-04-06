@@ -1,8 +1,51 @@
 import React from "react";
 import QtyManager from "./QtyManager";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { ui } from "../../../store/handlers/Ui-handler";
 
 const Cartitem = ({ item }) => {
+  const dispatch = useDispatch()
+  const auth = useSelector(state=>state.auth.auth)
+
+  const onAddtobaskethandler = () => {
+    // console.log("clicked");
+    if (!auth) {
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: "Please Login To add Basket",
+        })
+      );
+    } else {
+      dispatch(ui.AddTobasket(item));
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: "Item Added to Cart",
+        })
+      );
+    }
+  };
+  const onRemoveBasketHandler = () => {
+    // console.log("clicked");
+    if (!auth) {
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: "Please Login To add Basket",
+        })
+      );
+    } else {
+      dispatch(ui.RemoveFrombasket(item));
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: "Item Remove from  Cart",
+        })
+      );
+    }
+  };
   return (
     <motion.div
       className="w-full border-b py-1 h- flex"
@@ -11,7 +54,14 @@ const Cartitem = ({ item }) => {
       transition={{ delay: 0.2 }}
     >
       <div className="w-4/12 flex justify-center items-center">
-        <img alt="food item" src={item.imageUrl} className="w-full h-full" />
+        <motion.img // Wrap the img with motion.img
+          alt="food item"
+          src={item.imageUrl}
+          className="w-full h-full"
+          initial={{ opacity: 0 }} // Add initial animation
+          animate={{ opacity: 1 }} // Add animate animation
+          transition={{ delay: 0.2 }} // Add transition animation
+        />
       </div>
       <div className="w-8/12 h-full flex flex-col p-1">
         <div className="font-semibold text-xl">{item.productName}</div>

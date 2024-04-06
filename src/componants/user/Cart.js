@@ -81,6 +81,7 @@ const Cart = () => {
       );
     }
   };
+  
 
   return (
     <motion.div

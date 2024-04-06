@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="flex justify-around -black pb-4">
         <div className="item1 h-12 flex items-center justify-center">
           <span
-            className="text-2xl border-2 -black rounded-full p-2 bg-blue-900 text-white"
+            className="text-2xl  border-2 -black rounded-full p-2 bg-blue-900 text-white"
             onClick={() => {
               setMenu(!menu);
             }}
