@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/WalletCard.css";
 import { GoArrowDownLeft } from "react-icons/go";
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import { ui } from "../../../store/handlers/Ui-handler";
 
 const WalletCard = ({ bal }) => {
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  // State to manage notification
+  const [notification, setNotification] = useState("");
 
   async function fetchWallet() {
     try {
@@ -26,7 +31,12 @@ const WalletCard = ({ bal }) => {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error fetching wallet data:", error.message);
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: "Please refresh Page",
+        })
+      );
       throw error;
     }
   }
@@ -37,6 +47,117 @@ const WalletCard = ({ bal }) => {
     refetchInterval: 10000,
   });
 
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const showRazorpay = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      setNotification("Failed to load Razorpay. Please check your internet connection.");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_hzFQkenT974bpv",
+      currency: "INR",
+      amount: amount * 100,
+      name: "Vibe Store",
+      description: "Thanks For Connection With us",
+      modal: true,
+      handler: function (response) {
+        if (response.razorpay_payment_id) {
+          addMoneyToWallet(user.user.id, amount)
+            .then((data) => {
+              console.log("Updated user:", data);
+            })
+            .catch((error) => {
+              console.log(error);
+              dispatch(
+                ui.SetNotification({
+                  active: true,
+                  msg: "Error adding money to wallet. Please try again later.",
+                })
+              );
+              setNotification("Error adding money to wallet. Please try again later.");
+            });
+        } else {
+          dispatch(
+            ui.SetNotification({
+              active: true,
+              msg: "Payment failed. Please try again.",
+            })
+          );
+          // setNotification();
+        }
+      },
+      prefill: {
+        name: user.user.name,
+        email: user.user.email,
+        contact: user.user.email,
+        address: "Anna Idli Grah Vadagon Budruk",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
+  async function addMoneyToWallet(userId, amountToAdd) {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/wallet/addmoney/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount: amountToAdd }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+      throw error;
+    }
+  }
+
+  const onAddMoneyHandler = () => {
+    const amountStr = prompt("Enter the amount to add:");
+    const amount = parseFloat(amountStr);
+
+    if (isNaN(amount) || amount <= 0) {
+      
+      setNotification("Please enter a valid amount.");
+      return;
+    }
+
+    setNotification(""); // Clear any existing notifications
+    showRazorpay(amount);
+  };
+
   return (
     <motion.div
       className="fixed top-16 flex flex-col right-0 left-0"
@@ -44,6 +165,11 @@ const WalletCard = ({ bal }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
+      {notification && (
+        <div className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded">
+          {notification}
+        </div>
+      )}
       <div className="h-20 flex flex-col px-6 text-white">
         <div className="mt-2 text-sm font-semibold text-gray-100">
           Available Balance
@@ -60,6 +186,7 @@ const WalletCard = ({ bal }) => {
       <div className="h-20 flex justify-around items-center">
         <div className="w-3/6 h-full flex justify-center items-center">
           <motion.div
+            onClick={onAddMoneyHandler}
             className="px-8 text-lg font-semibold py-3 bg-black rounded-xl flex items-center space-x-2 text-white"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

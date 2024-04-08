@@ -8,6 +8,7 @@ import Cartitem from "./UI/Cartitem";
 import { motion } from "framer-motion";
 
 const Cart = () => {
+  
   const auth = useSelector((state) => state.auth.auth);
   const userdata = useSelector((state) => state.auth.user);
   const basket = useSelector((state) => state.ui.basket);

@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { LogoutHandler } from "../../store/actions/ui-actions";
 import { motion } from "framer-motion";
+import useOrders from "../../hooks/useOrders";
 
 const Wallet = () => {
   const loggedin = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const orders = useOrders();
+  
   useEffect(() => {
     if (!loggedin) {
       navigate("/login");
@@ -64,17 +66,16 @@ const Wallet = () => {
             </div>
           </div>
           <div className="w-full h-full overflow-auto">
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
+            {orders.error ? (
+              <div className="text-center text-gray-500 py-4">
+                {orders.error}
+              </div>
+            ) : (
+              orders.data.map((pro) => (
+                <Transaction key={pro.id} trans={pro} />
+              ))
+            )}
           </div>
-        
         </div>
       </motion.div>
     </motion.div>
