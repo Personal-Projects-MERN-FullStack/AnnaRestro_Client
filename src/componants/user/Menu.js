@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./css/manu.css";
-import Scard from "./UI/Scard";
-import Bcard from "./UI/Bcard";
-import { FaSearch } from "react-icons/fa";
-import Search from "./subpages/Search";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import Scard from "./UI/Scard";
+import Bcard from "./UI/Bcard";
+import Search from "./subpages/Search";
+import { FaSearch } from "react-icons/fa";
 
 const Menu = () => {
   const menu = useSelector((state) => state.menu.menu);
@@ -21,25 +20,29 @@ const Menu = () => {
     }
   }, [menu]);
 
-  function filterDataByKeyword(data, keyword) {
+  useEffect(() => {
+    const filteredData = filterDataByKeyword(menu.data, searchTerm);
+    setFilteredSearch(filteredData);
+  }, [menu.data, searchTerm]);
+
+  const filterDataByKeyword = (data, keyword) => {
     if (!keyword.trim()) {
       return data;
     }
 
     const searchTerm = keyword.toLowerCase();
-    const filteredData = data.filter((item) =>
+    return data.filter((item) =>
       item.productName.toLowerCase().includes(searchTerm)
     );
-
-    return filteredData;
-  }
+  };
 
   const onSearchChangeHandler = (event) => {
-    const searchTerm = event.target.value;
-    setSearchTerm(searchTerm);
-    const filteredData = filterDataByKeyword(menu.data, searchTerm);
-    setFilteredSearch(filteredData);
+    setSearchTerm(event.target.value);
   };
+
+  const filteredSearchMemoized = useMemo(() => {
+    return filterDataByKeyword(menu.data, searchTerm);
+  }, [menu.data, searchTerm]);
 
   return (
     <motion.div
@@ -105,15 +108,13 @@ const Menu = () => {
             BREAKFAST
           </div>
           <div className="h-full mx-2 mt-2 overflow-auto">
-            {!Menu.Loading && filteredSearch.map((item, index) => (
-              <Bcard key={index} item={item} />
-            ))}
+            {!loading &&
+              filteredSearchMemoized.map((item, index) => (
+                <Bcard key={index} item={item} />
+              ))}
           </div>
         </motion.div>
       </div>
-      
-
-
     </motion.div>
   );
 };
