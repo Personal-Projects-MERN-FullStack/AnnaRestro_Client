@@ -122,8 +122,8 @@ function AppRoutes() {
       path: "/admin",
       element: <Outlet />,
       children: [
-        { path: "", element: <AdminHome /> },
-        { path: "profile", element: <AdminProfile /> },
+        { path: "", element: <Orders /> },
+        { path: "profile", element: <Orders /> },
       ],
     },
     {

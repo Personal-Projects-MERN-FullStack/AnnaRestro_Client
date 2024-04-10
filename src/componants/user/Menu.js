@@ -5,6 +5,7 @@ import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import Search from "./subpages/Search";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const Menu = () => {
   const menu = useSelector((state) => state.menu.menu);
@@ -12,6 +13,7 @@ const Menu = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSearch, setFilteredSearch] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!menu.isLoading) {
@@ -108,7 +110,7 @@ const Menu = () => {
             BREAKFAST
           </div>
           <div className="h-full mx-2 mt-2 overflow-auto">
-            {!loading &&
+            {!loading & (filteredSearchMemoized != undefined) &&
               filteredSearchMemoized.map((item, index) => (
                 <Bcard key={index} item={item} />
               ))}
