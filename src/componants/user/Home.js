@@ -7,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 import "./css/Home.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-
+import { Typewriter } from "react-simple-typewriter";
 const Home = () => {
   const menu = useSelector((state) => state.menu.menu);
   const Navigate = useNavigate();
@@ -54,12 +54,17 @@ const Home = () => {
           transition={{ delay: 0.5 }}
         >
           <motion.div
-            className="text-6xl mb-2 anna"
+            className="text-6xl mb-2 anna flex"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            Anna Restro
+            <div className="mr-2"> </div>
+            <Typewriter
+              className="ml-2"
+              words={["Anna Restro", "virtual Restro", "South Indian"]}
+              loop={true}
+            />
           </motion.div>
           <motion.div
             className="slogon"

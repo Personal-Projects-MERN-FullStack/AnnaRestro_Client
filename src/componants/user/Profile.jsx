@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <div className="flex mt-4  flex-col items-center justify-start h-screen">
       {/* <div className="text-xl font-semibold m-2 shadow-lg shadow-black w-full rounded-2xl">Profile</div> */}
-      <div className="shadow-md py-1 shadow-black items-center m-2 rounded-2xl text-blue-900  flex justify-between w-11/12 px-4 py-3 font-semibold">
+      <div className="shadow-md py-1 shadow-black items-center m-2 rounded-2xl text-blue-900  flex justify-between w-11/12 px-4  font-semibold">
         <IoReturnUpBackOutline
           onClick={() => Navigate("/wallet")}
           className="text-2xl cursor-pointer"
