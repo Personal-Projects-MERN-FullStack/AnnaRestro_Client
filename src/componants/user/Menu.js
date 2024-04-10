@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/manu.css";
 import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import { FaSearch } from "react-icons/fa";
 import Search from "./subpages/Search";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion";
 
 const Menu = () => {
   const menu = useSelector((state) => state.menu.menu);
   const [search, setSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSearch, setFilteredSearch] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (menu.isloading) {
-    return <h1>Loading...</h1>;
+  useEffect(() => {
+    if (!menu.isLoading) {
+      setLoading(false);
+      setFilteredSearch(menu.data);
+    }
+  }, [menu]);
+
+  function filterDataByKeyword(data, keyword) {
+    if (!keyword.trim()) {
+      return data;
+    }
+
+    const searchTerm = keyword.toLowerCase();
+    const filteredData = data.filter((item) =>
+      item.productName.toLowerCase().includes(searchTerm)
+    );
+
+    return filteredData;
   }
+
+  const onSearchChangeHandler = (event) => {
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+    const filteredData = filterDataByKeyword(menu.data, searchTerm);
+    setFilteredSearch(filteredData);
+  };
 
   return (
     <motion.div
       className="flex flex-col w-full fixed top-0 right-0 left-0 bottom-0 h-screen"
-      initial={{ opacity: 0, y: 50 }} // Initial animation state
-      animate={{ opacity: 1, y: 0 }} // Animation when component mounts
-      exit={{ opacity: 0 }} // Animation when component unmounts
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
     >
       <div
         className={`top-0 left-0 right-0 ${
@@ -32,29 +58,38 @@ const Menu = () => {
             <div className="w-3/6 h-full flex justify-start pl-8 text-2xl font-bold items-center">
               Our Menu
             </div>
-            <div className="w-3/6 h-full flex justify-end items-center mr-8 text-xl">
+            <motion.div
+              className="w-3/6 h-full flex justify-end items-center mr-8 text-xl"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <FaSearch
                 className=""
                 onClick={() => {
                   setSearch(!search);
                 }}
               />
-            </div>
+            </motion.div>
           </div>
 
           {search && (
-            <div className="h-3/6 w-full flex items-center">
-              <Search />
-            </div>
+            <motion.div
+              className="h-3/6 w-full flex items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Search onSearchChangeHandler={onSearchChangeHandler} />
+            </motion.div>
           )}
         </div>
       </div>
       <div className="h-5/6 flex w-full">
         <motion.div
           className="w-3/12 h-full"
-          initial={{ x: -100, opacity: 0 }} // Initial animation state
-          animate={{ x: 0, opacity: 1 }} // Animation when component mounts
-          transition={{ delay: 0.2 }} // Delay animation to start after page animation
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
           <div className="bg-white h-full overflow-auto">
             <Scard />
@@ -62,20 +97,23 @@ const Menu = () => {
         </motion.div>
         <motion.div
           className="w-10/12 h-full bg-green-100 rounded-l-xl overflow-hidden"
-          initial={{ x: 100, opacity: 0 }} // Initial animation state
-          animate={{ x: 0, opacity: 1 }} // Animation when component mounts
-          transition={{ delay: 0.2 }} // Delay animation to start after page animation
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
           <div className="h-12 text-2xl font-bold flex justify-start items-center pl-4">
             BREAKFAST
           </div>
           <div className="h-full mx-2 mt-2 overflow-auto">
-            {menu.data.map((item, index) => (
+            {!Menu.Loading && filteredSearch.map((item, index) => (
               <Bcard key={index} item={item} />
             ))}
           </div>
         </motion.div>
       </div>
+      
+
+
     </motion.div>
   );
 };

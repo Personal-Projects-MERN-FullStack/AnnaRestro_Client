@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import useOrders from "../../../hooks/useOrders";
 const OrderStatus = () => {
   const { orderId } = useParams();
+
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,7 +15,8 @@ const OrderStatus = () => {
     }
   }, [auth, navigate]);
   const orders = useOrders();
-  // console.log(orders.data);
+  
+
   return (
     <div className=" py-8 px-6 fixed top-0 left-0 right-0 bottom-0 overflow-auto flex flex-col">
       <Link to="/orders" className="text-2xl font-bold">
@@ -64,8 +66,9 @@ const OrderStatus = () => {
           </div>
           {orders.data.map((order) => {
             if (order._id === orderId) {
+              
               return order.products.map((item) => {
-                // Add return statement here
+                
                 return (
                   <OrderListItem
                     item_name={item.productName}

@@ -4,7 +4,7 @@ import "./css/Wallet.css";
 import { IoNotifications } from "react-icons/io5";
 import Transaction from "./UI/Transaction";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { LogoutHandler } from "../../store/actions/ui-actions";
 import { motion } from "framer-motion";
 import useOrders from "../../hooks/useOrders";
@@ -14,7 +14,7 @@ const Wallet = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const orders = useOrders();
-  
+
   useEffect(() => {
     if (!loggedin) {
       navigate("/login");
@@ -23,14 +23,14 @@ const Wallet = () => {
 
   return (
     <motion.div
-      className="container h-screen fixed top-0 left-0 right-0 bottom-0"
+      className="container  h-screen fixed top-0 left-0 right-0 bottom-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <div className="h-16 text-white fixed top-0 left-0 right-0 flex">
         <div className="w-2/6 h-full flex justify-start pl-4 items-center">
-          <div className="rounded-full h-8 w-8 object-fit">
+          <div onClick={()=>navigate("/profile")} className="rounded-full h-8 w-8 object-fit">
             <img
               src="/profile/profile2.webp"
               alt="profile"
@@ -65,16 +65,17 @@ const Wallet = () => {
               {/* <FaFilterCircleDollar /> */}
             </div>
           </div>
-          <div className="w-full h-full overflow-auto">
-            {orders.error ? (
-              <div className="text-center text-gray-500 py-4">
-                {orders.error}
-              </div>
-            ) : (
-              orders.data.map((pro) => (
-                <Transaction key={pro.id} trans={pro} />
-              ))
-            )}
+          <div className="w-full h-5/6 overflow-y-auto">
+            {
+              (orders.data === undefined? (
+                <div className="text-center text-gray-500 py-4">
+                  <div>No transaction to show</div>
+                </div>
+              ) : (
+                orders.data.map((pro) => (
+                  <Transaction key={pro.id} trans={pro} />
+                ))
+              ))}
           </div>
         </div>
       </motion.div>

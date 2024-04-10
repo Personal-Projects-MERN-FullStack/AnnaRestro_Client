@@ -14,6 +14,12 @@ export const authVefication = (curl) => {
   };
 };
 
+export const UserUpdate = (userdata) => {
+  return async (dispatch) => {
+    dispatch(auth.setuser(userdata));
+  };
+};
+
 export const LogoutHandler = () => {
   return async (dispatch) => {
     localStorage.clear();

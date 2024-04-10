@@ -19,6 +19,7 @@ import {
 } from "./store/actions/ui-actions";
 import useLoadMenu from "./hooks/useLoadMenu";
 import Productpage from "./componants/user/Productpage";
+import Profile from "./componants/user/Profile";
 // Home Components
 
 // User Dashboard Components
@@ -96,7 +97,7 @@ function AppRoutes() {
           ],
         },
         { path: "dashboard", element: <UserProfile /> },
-        { path: "profile", element: <UserWallet /> },
+        { path: "profile", element: <Profile /> },
         {
           path: "wallet",
           element: <Outlet />,

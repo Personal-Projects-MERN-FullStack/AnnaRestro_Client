@@ -38,20 +38,22 @@ const Item = ({ image, name, qty, price, item }) => {
       );
     }
   };
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="bg-white rounded-2xl h-5/6"
+          className="h-full bg-white rounded-2xl"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          exit={{ opacity: 0, y: -50 }}
-
+          style={{ minWidth: "130px", width: "10px" }}
         >
           <div className="h-3/6 w-full flex justify-between">
-            <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="flex justify-center items-center p-1 w-3/6 h-full">
+            <div
+              onClick={() => Navigate(`/menu/product/${item._id}`)}
+              className="flex justify-center items-center p-1 w-3/6 h-full"
+            >
               <img src={image} alt="Burger" />
             </div>
             <div className="flex justify-center items-center w-3/6 h-full">
@@ -63,7 +65,10 @@ const Item = ({ image, name, qty, price, item }) => {
               </div>
             </div>
           </div>
-          <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="h-3/6 w-full flex flex-col">
+          <div
+            onClick={() => Navigate(`/menu/product/${item._id}`)}
+            className="h-3/6 w-full flex flex-col"
+          >
             <div className="font-semibold h-3/6 w-full flex justify-start px-2 items-center -black">
               {truncatedName}
             </div>

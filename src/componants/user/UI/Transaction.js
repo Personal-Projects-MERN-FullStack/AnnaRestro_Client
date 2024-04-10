@@ -6,7 +6,7 @@ function createShortProductNameList(products) {
   return products.map((product) => {
     const words = product.productName.split(" ");
     const initials = words.map((word) => word.charAt(0)).join("");
-    return initials.toUpperCase()+",";
+    return initials.toUpperCase() + ",";
   });
 }
 function convertDateFormat(dateString) {
@@ -22,12 +22,12 @@ function convertDateFormat(dateString) {
   return formattedDate;
 }
 const Transaction = ({ trans }) => {
-  console.log(trans);
   const navigate = useNavigate();
+ 
 
   return (
     <motion.div
-      onClick={() => navigate("/orders/status")}
+      onClick={() => navigate(`/orders/status/${trans._id}`)}
       className="h-14 flex w-full py-2 border-b"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

@@ -10,7 +10,7 @@ const Category = ({ image, name }) => {
       transition={{ duration: 0.5 }}
       style={{ minWidth: '70px', width: '70px' }}
     >
-      <div className="rounded-xl -black flex justify-center items-center bg-white h-4/6 min-w-[70px]">
+      <div className="rounded-xl -black flex justify-center items-center bg- h-4/6 min-w-[70px]">
         <img src={image} className="h-5/6" alt="logo here" />
       </div>
       <div className="prompt text-lg -black flex justify-center items-center h-2/6">

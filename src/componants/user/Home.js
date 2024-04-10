@@ -71,7 +71,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="flex h-2/6 overflow-x-auto  items-center  pl-2 -black space-x-3 "
+          className="overflow-x-auto pl-4 items-center space-x-3 flex h-[120px] w-full "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -107,7 +107,7 @@ const Home = () => {
           transition={{ delay: 2 }}
         >
           <motion.div
-            className="h-[200px] flex flex-col rounded-2xl w-[180px]  bg-white"
+            className="h-[220px] flex flex-col rounded-2xl w-[180px]  bg-white"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 2.5 }}
@@ -137,7 +137,7 @@ const Home = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            className="h-[200px] flex flex-col rounded-2xl w-[180px] bg-white"
+            className="h-[220px] flex flex-col rounded-2xl w-[180px] bg-white"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 2.5 }}
@@ -150,9 +150,9 @@ const Home = () => {
               <div className="h-2/6 flex justify-center items-center slogon">
                 Points
               </div>
-              <div className="h-1/6 flex justify-center items-center animate-ping">
+              <div className="h-1/6 flex justify-center items-center animate-bounce">
                 {" "}
-                --------------------{" "}
+                -------------------{" "}
               </div>
             </div>
             <motion.div

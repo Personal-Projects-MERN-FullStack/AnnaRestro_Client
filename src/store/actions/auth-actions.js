@@ -22,6 +22,7 @@ export const LoginHandler = (logindata) => {
         })
       );
     } else {
+      dispatch(auth.setuser(responseData));
       localStorage.setItem("user", JSON.stringify(responseData));
       dispatch(
         ui.SetNotification({ active: true, msg: "Logged in Successfullyyyyyy" })

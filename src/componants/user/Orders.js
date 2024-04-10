@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 const Orders = () => {
   const auth = useSelector((state) => state.auth.auth);
   const orders = useOrders();
+  // console.table(orders.data);
   const navigate = useNavigate();
   const [section, setSection] = useState(0);
 
@@ -19,7 +20,7 @@ const Orders = () => {
 
   return (
     <motion.div
-      className="h-full fixed top-0 bottom-0 left-0 right-0 w-full bg-white"
+      className="h-screen fixed top-0 bottom-0 left-0 right-0 w-full bg-white"
       initial={{ opacity: 0, y: -20 }} // Initial animation state
       animate={{ opacity: 1, y: 0 }} // Animation when component mounts
       exit={{ opacity: 0, y: 20 }} // Animation when component unmounts
@@ -62,12 +63,12 @@ const Orders = () => {
         </div>
       </div>
       <motion.div
-        className="flex flex-col h-full overflow-auto  space-y-8"
+        className="overflow-y-auto space-y-8 h-5/6"
         initial={{ opacity: 0 }} // Initial animation state
         animate={{ opacity: 1 }} // Animation when component mounts
         transition={{ delay: 0.2 }} // Transition delay
       >
-        {!orders.isLoading &&
+        {!orders.isLoading && orders.data.length > 0 ? (
           orders.data.map((item) => {
             if (
               (section === 0 && item.status === "pending") ||
@@ -77,7 +78,12 @@ const Orders = () => {
               return <OrderItem key={item.id} item={item} />;
             }
             return null;
-          })}
+          })
+        ) : (
+          <div className="flex justify-center items-center h-full">
+            <p className="text-gray-500">No orders to show</p>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
