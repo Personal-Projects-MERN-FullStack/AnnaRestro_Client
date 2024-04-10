@@ -110,10 +110,13 @@ const Menu = () => {
             BREAKFAST
           </div>
           <div className="h-full mx-2 mt-2 overflow-auto">
-            {!loading & (filteredSearchMemoized != undefined) &&
+            {!loading & (filteredSearchMemoized !== undefined) ? (
               filteredSearchMemoized.map((item, index) => (
                 <Bcard key={index} item={item} />
-              ))}
+              ))
+            ) : (
+              <div>No Data here</div>
+            )}
           </div>
         </motion.div>
       </div>
