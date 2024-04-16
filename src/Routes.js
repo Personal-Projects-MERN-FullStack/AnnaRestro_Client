@@ -21,15 +21,13 @@ import useLoadMenu from "./hooks/useLoadMenu";
 import Productpage from "./componants/user/Productpage";
 import Profile from "./componants/user/Profile";
 import Dashboard from "../src/componants/admin/pages/Dasboard";
+import AOrders from "./componants/admin/pages/Orders";
+import Login from "./componants/admin/pages/Login";
 // Home Components
 
 // User Dashboard Components
 const UserProfile = () => <div>User Profile</div>;
-const UserWallet = () => <div>User Wallet</div>;
 
-// Admin Dashboard Components
-const AdminHome = () => <div>Admin Home Page</div>;
-const AdminProfile = () => <div>Admin Profile</div>;
 
 function AppRoutes() {
   const dispatch = useDispatch();
@@ -124,7 +122,8 @@ function AppRoutes() {
       element: <Outlet />,
       children: [
         { path: "", element: <Dashboard /> },
-        { path: "Orders", element: <Orders /> },
+        { path: "Orders", element: <AOrders /> },
+        { path: "login", element: <Login /> },
       ],
     },
     {

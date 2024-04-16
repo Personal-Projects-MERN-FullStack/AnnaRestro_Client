@@ -9,7 +9,7 @@ const Dashitem = ({logo,title,status,change}) => {
       <div className=" px-2  w-8/12 flex flex-col justify-center items-between">
         <div className="text-lg font-semibold">{title}</div>
         <div className="text-2xl font-bold">{status}</div>
-        <div className="text-xs text-green-900">+{change} % (30days)</div>
+        <div className="text-xs text-green-900">{change} </div>
       </div>
     </div>
   );

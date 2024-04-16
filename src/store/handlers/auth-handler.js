@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 let initialState = {
     auth:false,
     authtoken:"",
-    user:{}
+    user:{},
+    admin:{}
 }
 const authhandler = createSlice({
     name : "auth",
@@ -20,7 +21,13 @@ const authhandler = createSlice({
         },
         setuser(state,action,payload){
             state.user = action.payload
-        }
+        },
+        setadminuser(state,action,payload){
+            state.admin = action.payload
+        },
+        adminLogout(state,action,payload){
+            state.admin = {}
+        },
     }
 })
 export default authhandler.reducer;
