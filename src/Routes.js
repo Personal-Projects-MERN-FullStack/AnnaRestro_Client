@@ -20,6 +20,7 @@ import {
 import useLoadMenu from "./hooks/useLoadMenu";
 import Productpage from "./componants/user/Productpage";
 import Profile from "./componants/user/Profile";
+import Dashboard from "../src/componants/admin/pages/Dasboard";
 // Home Components
 
 // User Dashboard Components
@@ -120,6 +121,14 @@ function AppRoutes() {
     },
     {
       path: "/admin",
+      element: <Outlet />,
+      children: [
+        { path: "", element: <Dashboard /> },
+        { path: "Orders", element: <Orders /> },
+      ],
+    },
+    {
+      path: "/superadmin",
       element: <Outlet />,
       children: [
         { path: "", element: <Orders /> },

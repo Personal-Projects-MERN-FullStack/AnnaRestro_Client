@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
-import { motion } from "framer-motion";
+
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
