@@ -18,10 +18,12 @@ import {
   getTodaysIncome,
   getTotalIncome,
 } from "./userdata";
+
 const Dasboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const admin = useSelector((state) => state.auth.admin);
+
   useEffect(() => {
     console.log();
 
@@ -66,7 +68,7 @@ const Dasboard = () => {
           <CgProfile />
         </div>
         <button
-          onclick={() => {
+          onClick={() => {
             dispatch(adminlogout());
           }}
           className="text-3xl"
@@ -94,44 +96,48 @@ const Dasboard = () => {
       </div>
       {/* Small DashBoard */}
       <div className="flex flex-col h-full px-6">
-        <Dashitem
-          logo={<CiBag1 />}
-          title="New Orders "
-          status={countTodaysOrders(orders.data, "new")}
-          change={calculateGrowthPercentage(
-            countTodaysOrders(orders.data, "new"),
-            countYesterdaysNewOrders(orders.data, "new")
-          )}
-        />
-        <Dashitem
-          logo={<MdOutlinePendingActions />}
-          title="Pending Orders "
-          status={countTodaysOrders(orders.data, "pending")}
-          change={calculateGrowthPercentage(
-            countTodaysOrders(orders.data, "pending"),
-            countYesterdaysNewOrders(orders.data, "new")
-          )}
-        />
-        <Dashitem
-          logo={<IoBagCheckOutline />}
-          title="Completed Orders "
-          status={countTodaysOrders(orders.data, "completed")}
-          change={calculateGrowthPercentage(
-            countTodaysOrders(orders.data, "completed"),
-            countYesterdaysNewOrders(orders.data, "new")
-          )}
-        />
-        <Dashitem
-          logo={<GiReceiveMoney />}
-          title="Todays Total Earning  "
-          status={getTodaysIncome(orders.data)}
-        />
-        <Dashitem
-          logo={<GiTakeMyMoney />}
-          title="Total Earning  "
-          status={getTotalIncome(orders.data)}
-          change="100"
-        />
+        {!orders.isLoading && (
+          <>
+            <Dashitem
+              logo={<CiBag1 />}
+              title="New Orders "
+              status={countTodaysOrders(orders.data, "new")}
+              change={calculateGrowthPercentage(
+                countTodaysOrders(orders.data, "new"),
+                countYesterdaysNewOrders(orders.data, "new")
+              )}
+            />
+            <Dashitem
+              logo={<MdOutlinePendingActions />}
+              title="Pending Orders "
+              status={countTodaysOrders(orders.data, "pending")}
+              change={calculateGrowthPercentage(
+                countTodaysOrders(orders.data, "pending"),
+                countYesterdaysNewOrders(orders.data, "new")
+              )}
+            />
+            <Dashitem
+              logo={<IoBagCheckOutline />}
+              title="Completed Orders "
+              status={countTodaysOrders(orders.data, "completed")}
+              change={calculateGrowthPercentage(
+                countTodaysOrders(orders.data, "completed"),
+                countYesterdaysNewOrders(orders.data, "new")
+              )}
+            />
+            <Dashitem
+              logo={<GiReceiveMoney />}
+              title="Todays Total Earning  "
+              status={getTodaysIncome(orders.data)}
+            />
+            <Dashitem
+              logo={<GiTakeMyMoney />}
+              title="Total Earning  "
+              status={getTotalIncome(orders.data)}
+              change="100"
+            />
+          </>
+        )}
       </div>
     </div>
   );
