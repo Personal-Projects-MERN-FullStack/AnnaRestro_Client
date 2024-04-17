@@ -84,7 +84,7 @@ const Dasboard = () => {
           onClick={() => {
             navigate("/admin/orders");
           }}
-          className="p-2 px-6 text-xl bg-gray-100 rounded-xl font-bold"
+          className="p-2 cursor-pointer px-6 text-xl bg-gray-100 rounded-xl font-bold"
         >
           Orders
         </div>

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
-import { ui } from "../../../store/handlers/Ui-handler";
 
 // Function to convert date format
 function convertDateFormat(dateString) {
@@ -21,11 +18,11 @@ function convertDateFormat(dateString) {
 
 const OrderItem = ({ item, orders }) => {
   const navigate = useNavigate();
-  const [loading, setloading] = useState(false);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(item.status); // State to store selected status
-  async function updateOrderStatus(orderId, newStatus) {
-    
+
+  const updateOrderStatus = async (orderId, newStatus) => {
+    setLoading(true);
     try {
       const response = await fetch(
         `http://localhost:5000/orders/${orderId}/update-status`,
@@ -37,22 +34,23 @@ const OrderItem = ({ item, orders }) => {
           body: JSON.stringify({ status: newStatus }),
         }
       );
-      
       if (!response.ok) {
-        setloading(false);
+        setLoading(false);
+        throw new Error("Failed to update order status");
       }
-      const updatedOrder = await response.json();
-      return updatedOrder;
+     
+      // Optionally handle success, like showing a success message
     } catch (error) {
-      setloading(false);
+      setLoading(false);
       console.error("Error updating order status:", error.message);
-      throw error;
+      // Optionally handle error, like showing an error message
     }
-  }
+  };
+
   const onStatusChangeHandler = (event) => {
-    setSelectedStatus(event.target.value);
-    
-    updateOrderStatus(item._id, selectedStatus);
+    const newStatus = event.target.value;
+    setSelectedStatus(newStatus);
+    updateOrderStatus(item._id, newStatus);
   };
 
   return (
@@ -62,8 +60,7 @@ const OrderItem = ({ item, orders }) => {
         animate={{ opacity: 1, y: 0 }} // Animation when component mounts
         exit={{ opacity: 0, y: 20 }} // Animation when component unmounts
         transition={{ duration: 0.5 }} // Transition duration
-        onClick={onStatusChangeHandler}
-        className="mx-4 border-2 bg-white border-gray-400 mt-4  rounded-xl flex flex-col" // Adjusted height to 40px
+        className="mx-4 border-2 bg-white border-gray-400 mt-4 rounded-xl flex flex-col"
       >
         <div className="flex justify-center items-center h-12">
           <div className="px-4 w-3/6 h-full flex justify-start items-center p-1 text-green-600">
@@ -73,25 +70,17 @@ const OrderItem = ({ item, orders }) => {
             ₹ {item.total}
           </div>
         </div>
-        <div className="w-full px-4 ">
+        <div className="w-full px-4">
           <div>Order Details</div>
-          {orders.data.map((order) => {
-            if (order._id === item._id) {
-              return order.products.map((product) => {
-                // Changed variable name to avoid conflict with outer 'item'
-                return (
-                  <li key={product._id}>
-                    {product.productName}
-                    {` ${product.price} x ${product.productQty} = ₹${
-                      product.price * product.productQty
-                    }`}
-                  </li>
-                );
-              });
-            }
-          })}
+          {item.products.map((product) => (
+            <li key={product._id}>
+              {product.productName}
+              {` ${product.price} x ${product.productQty} = ₹${
+                product.price * product.productQty
+              }`}
+            </li>
+          ))}
         </div>
-
         <div className="h-16 w-full flex">
           <div className="flex flex-col justify-center items-center border-r-2 w-3/6 my-2">
             <div className="h-2/6 w-full text-xs px-4">Ordered Branch</div>
@@ -106,7 +95,7 @@ const OrderItem = ({ item, orders }) => {
             </div>
           </div>
         </div>
-        <div className=" bg-white border-t-2 border-gray-400 mt-4 h-14 rounded-xl flex  ">
+        <div className="bg-white border-t-2 border-gray-400 mt-4 h-14 rounded-xl flex">
           <div className="w-3/6 h-full flex items-center justify-start pl-4 border-r-2 text-xl font-semibold text-gray-700">
             Status
           </div>
@@ -114,11 +103,12 @@ const OrderItem = ({ item, orders }) => {
             {!loading ? (
               item.status !== "completed" ? (
                 <select
-                  onClick={onStatusChangeHandler}
+                  onChange={onStatusChangeHandler}
+                  value={selectedStatus}
                   className="block h-full rounded-xl w-full sm:text-sm border-gray-300 mb-4"
                 >
                   <optgroup label="Order Status">
-                    <option value="new">{selectedStatus}</option>
+                    <option value="new">New</option>
                     <option value="pending">Pending</option>
                     <option value="ready">Ready</option>
                     <option value="completed">Completed</option>
@@ -127,14 +117,14 @@ const OrderItem = ({ item, orders }) => {
                 </select>
               ) : (
                 <div className="text-xl font-bold text-green-500">
-                  COMPLETED{" "}
+                  COMPLETED
                 </div>
               )
             ) : (
-              <div role="status">
+              <div role="status" className="flex space-x-2">
                 <svg
                   aria-hidden="true"
-                  className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  className="w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +138,7 @@ const OrderItem = ({ item, orders }) => {
                     fill="currentFill"
                   />
                 </svg>
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only">Changing Status..</span>
               </div>
             )}
           </div>

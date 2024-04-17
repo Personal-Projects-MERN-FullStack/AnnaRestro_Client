@@ -53,7 +53,7 @@ const Login = () => {
               placeholder="Password"
               required
             />
-            <button>Log in</button>
+            <button className="cursor-pointer">Log in</button>
           </form>
         </div>
       </div>
