@@ -23,6 +23,7 @@ import Profile from "./componants/user/Profile";
 import Dashboard from "../src/componants/admin/pages/Dasboard";
 import AOrders from "./componants/admin/pages/Orders";
 import Login from "./componants/admin/pages/Login";
+import SuperAdmin from "./componants/sadmin/pages/SuperAdmin";
 // Home Components
 
 // User Dashboard Components
@@ -130,7 +131,7 @@ function AppRoutes() {
       path: "/superadmin",
       element: <Outlet />,
       children: [
-        { path: "", element: <Orders /> },
+        { path: "", element: <SuperAdmin /> },
         { path: "profile", element: <Orders /> },
       ],
     },

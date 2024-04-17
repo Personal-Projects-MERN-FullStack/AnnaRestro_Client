@@ -38,7 +38,7 @@ const OrderItem = ({ item, orders }) => {
         setLoading(false);
         throw new Error("Failed to update order status");
       }
-     
+      setLoading(false);
       // Optionally handle success, like showing a success message
     } catch (error) {
       setLoading(false);
@@ -56,10 +56,10 @@ const OrderItem = ({ item, orders }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: -20 }} // Initial animation state
-        animate={{ opacity: 1, y: 0 }} // Animation when component mounts
-        exit={{ opacity: 0, y: 20 }} // Animation when component unmounts
-        transition={{ duration: 0.5 }} // Transition duration
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
         className="mx-4 border-2 bg-white border-gray-400 mt-4 rounded-xl flex flex-col"
       >
         <div className="flex justify-center items-center h-12">

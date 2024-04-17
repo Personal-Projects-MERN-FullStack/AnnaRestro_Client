@@ -18,6 +18,7 @@ import {
   getTodaysIncome,
   getTotalIncome,
 } from "./userdata";
+import { motion } from "framer-motion";
 
 const Dasboard = () => {
   const navigate = useNavigate();
@@ -61,7 +62,11 @@ const Dasboard = () => {
   });
 
   return (
-    <div className="bg-gray-100 h-full w-screen py-2">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="bg-gray-100 h-full w-screen py-2"
+    >
       {/* Navbar */}
       <div className="h-12 flex justify-between items-center px-6 ">
         <div className="text-3xl">
@@ -139,7 +144,7 @@ const Dasboard = () => {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
