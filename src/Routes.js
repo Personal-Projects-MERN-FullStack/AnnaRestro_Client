@@ -26,6 +26,9 @@ import Login from "./componants/admin/pages/Login";
 import SuperAdmin from "./componants/sadmin/pages/SuperAdmin";
 import Structure from "./componants/sadmin/Componants/Structure";
 import OdersData from "./componants/sadmin/pages/OdersData";
+import Admins from "./componants/sadmin/pages/Admins";
+import Products from "./componants/sadmin/pages/Products";
+import Reports from "./componants/sadmin/pages/Reports";
 // Home Components
 
 // User Dashboard Components
@@ -136,9 +139,9 @@ function AppRoutes() {
         { path: "", element: <SuperAdmin /> },
         { path: "profile", element: <Orders /> },
         { path: "orders", element: <OdersData /> },
-        { path: "products", element: <OdersData /> },
-        { path: "reports", element: <OdersData /> },
-        { path: "admins", element: <OdersData /> },
+        { path: "products", element: <Products /> },
+        { path: "reports", element: <Reports /> },
+        { path: "admins", element: <Admins /> },
       ],
     },
     {

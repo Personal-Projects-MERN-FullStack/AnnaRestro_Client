@@ -21,11 +21,11 @@ const Sidebar = () => {
           {/* Navigation Section */}
           <nav className="flex-1">
             <ul className="space-y-2">
-              <li onClick={()=>{navigate('/superadmin')}} className="p-4 hover:bg-gray-700">Dashboard</li>
-              <li onClick={()=>{navigate('/superadmin/orders')}} className="p-4 hover:bg-gray-700">Orders</li>
-              <li onClick={()=>{navigate('/superadmin/admins')}} className="p-4 hover:bg-gray-700">Admins</li>
-              <li onClick={()=>{navigate('/superadmin/producs')}} className="p-4 hover:bg-gray-700">Products</li>
-              <li onClick={()=>{navigate('/superadmin/reports')}} className="p-4 hover:bg-gray-700">Reports</li>
+              <li onClick={()=>{navigate('/superadmin')}} className="p-4 hover:bg-gray-700 cursor-pointer hover:ml-6">Dashboard</li>
+              <li onClick={()=>{navigate('/superadmin/orders')}} className="p-4 hover:bg-gray-700 cursor-pointer hover:ml-6">Orders</li>
+              <li onClick={()=>{navigate('/superadmin/admins')}} className="p-4 hover:bg-gray-700 cursor-pointer hover:ml-6">Admins</li>
+              <li onClick={()=>{navigate('/superadmin/producs')}} className="p-4 hover:bg-gray-700 cursor-pointer hover:ml-6">Products</li>
+              <li onClick={()=>{navigate('/superadmin/reports')}} className="p-4 hover:bg-gray-700 cursor-pointer hover:ml-6">Reports</li>
             </ul>
           </nav>
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 
 // Function to convert date format
 function convertDateFormat(dateString) {
@@ -17,6 +18,7 @@ function convertDateFormat(dateString) {
 }
 
 const OrderItem = ({ item, orders }) => {
+  const admin = useSelector((state) => state.auth.admin);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(item.status); // State to store selected status
@@ -25,13 +27,13 @@ const OrderItem = ({ item, orders }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/orders/${orderId}/update-status`,
+        `${process.env.REACT_APP_API_URL}/orders/${orderId}/update-status`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ status: newStatus }),
+          body: JSON.stringify({ status: newStatus, adminid: admin.email }),
         }
       );
       if (!response.ok) {
