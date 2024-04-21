@@ -45,7 +45,7 @@ export const adminLoginHandler = (logindata) => {
       }
     );
     const responseData = await response.json();
-      console.log(responseData)
+    console.log(responseData);
     if (!response.ok) {
       dispatch(
         ui.SetNotification({
@@ -77,17 +77,18 @@ export const SignupHandler = (signupdata) => {
     if (!response.ok) {
       dispatch(ui.SetNotification({ active: true, msg: responseData.error }));
     } else {
+      dispatch(auth.setuser(responseData));
+      localStorage.setItem("user", JSON.stringify(responseData));
       dispatch(
         ui.SetNotification({ active: true, msg: "Logged in Successfully " })
       );
-      localStorage.setItem("user", JSON.stringify(responseData));
+
       dispatch(auth.Login());
     }
   };
 };
 export const adminlogout = () => {
   return async (dispatch) => {
-  dispatch(auth.adminLogout())
+    dispatch(auth.adminLogout());
   };
 };
-
