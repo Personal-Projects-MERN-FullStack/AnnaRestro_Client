@@ -118,7 +118,7 @@ const AOrders = () => {
         </div>
       </div>
       <motion.div
-        className="overflow-y-auto space-y-8 h-5/6"
+        className="overflow-y-auto space-y-8 h-5/6 md:grid md:grid-cols-2 md:gap-3 md:space-y-0 "
         initial={{ opacity: 0 }} // Initial animation state
         animate={{ opacity: 1 }} // Animation when component mounts
         transition={{ delay: 0.2 }} // Transition delay

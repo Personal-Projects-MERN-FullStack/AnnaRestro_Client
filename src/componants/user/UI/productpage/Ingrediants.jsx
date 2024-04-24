@@ -7,10 +7,10 @@ const Ingrediants = ({ item, delay }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: delay * 0.1 }}
-      className="w-full h-20 flex rounded-2xl shadow-md"
+      className="w-full h-20 flex rounded-2xl shadow-md p-1 md:border md:bg-gray-200"
     >
       <div className="w-3/12 flex items-center justify-center">
-        <img className="h-full w-full" src="/fitems/masala_dosa.png" alt="" />
+        <img className="h-full w-full md:h-8 md:w-10" src="/fitems/masala_dosa.png" alt="" />
       </div>
       <div className="font-bold text-xl -black w-5/12 flex items-center justify-start pl-2">
         {item}

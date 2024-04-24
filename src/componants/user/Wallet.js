@@ -42,10 +42,8 @@ const Wallet = () => {
           My Wallet
         </div>
         <motion.div
-          className="w-2/6 text-2xl h-full flex justify-end pr-6 items-center"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => dispatch(LogoutHandler())}
+          className="w-2/6 text-2xl h-full flex justify-end pr-6 items-center cursor-pointer"
+          onClick={() => navigate('/notification')}
         >
           <IoNotifications />
         </motion.div>

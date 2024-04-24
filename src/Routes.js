@@ -29,6 +29,7 @@ import OdersData from "./componants/sadmin/pages/OdersData";
 import Admins from "./componants/sadmin/pages/Admins";
 import Products from "./componants/sadmin/pages/Products";
 import Reports from "./componants/sadmin/pages/Reports";
+import NotificationPage from "./componants/user/NotificationPage";
 // Home Components
 
 // User Dashboard Components
@@ -102,6 +103,7 @@ function AppRoutes() {
         },
         { path: "dashboard", element: <UserProfile /> },
         { path: "profile", element: <Profile /> },
+        { path: "notification", element: <NotificationPage /> },
         {
           path: "wallet",
           element: <Outlet />,

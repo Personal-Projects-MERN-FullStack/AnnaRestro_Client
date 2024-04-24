@@ -62,7 +62,7 @@ const OrderItem = ({ item, orders }) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.5 }}
-        className="mx-4 border-2 bg-white border-gray-400 mt-4 rounded-xl flex flex-col"
+        className="mx-4 border-2 bg-white border-gray-400 mt-4 md:mt-0 rounded-xl flex flex-col"
       >
         <div className="flex justify-center items-center h-12">
           <div className="px-4 w-3/6 h-full flex justify-start items-center p-1 text-green-600">

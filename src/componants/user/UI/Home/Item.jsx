@@ -47,7 +47,7 @@ const Item = ({ image, name, qty, price, item }) => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          style={{ minWidth: "130px", width: "10px" }}
+          style={{ minWidth: "200px", width: "10px" }}
         >
           <div className="h-3/6 w-full flex justify-between">
             <div

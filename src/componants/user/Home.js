@@ -76,7 +76,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="overflow-x-auto pl-4 items-center space-x-3 flex h-[120px] w-full "
+          className="overflow-x-auto pl-4  items-center space-x-3 flex h-[120px] md:h-[250px] w-full "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -100,7 +100,7 @@ const Home = () => {
         </motion.div>
       </motion.div>
       <motion.div
-        className="bg-gray-100 h-[500px]"
+        className="bg-gray-100 h-[500px] md:hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
@@ -149,15 +149,15 @@ const Home = () => {
           >
             <div className="h-4/6 p-1 w-full">
               <div className="h-3/6 flex justify-center items-center text-6xl font-bold text-red-900 slogon">
-                {" "}
-                320{" "}
+               
+                320
               </div>
               <div className="h-2/6 flex justify-center items-center slogon">
                 Points
               </div>
               <div className="h-1/6 flex justify-center items-center animate-bounce">
-                {" "}
-                -------------------{" "}
+                
+                -------------------
               </div>
             </div>
             <motion.div

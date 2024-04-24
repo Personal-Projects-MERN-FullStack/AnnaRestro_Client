@@ -95,7 +95,7 @@ const Productpage = () => {
         <div className="h-[250px] flex justify-center items-center w-[250px] bg-gray-100 rounded-full">
           <img
             src={product.imageUrl}
-            className="h-full w-full"
+            className="h-full w-full "
             alt={product.productName}
           />
         </div>
@@ -127,7 +127,7 @@ const Productpage = () => {
             Instruction
           </div>
         </div>
-        <div className="flex h-[300px] overflow-y-auto space-y-4 flex-col p-4">
+        <div className="flex h-[300px] overflow-y-auto space-y-4 flex-col p-4 md:grid md:grid-cols-4 md:gap-2 md:space-y-0">
           {product.nutrientsItems.map((item, index) => {
             return <Ingrediants key={item.id} item={item} delay={index} />;
           })}
