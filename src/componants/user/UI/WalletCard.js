@@ -160,7 +160,7 @@ const WalletCard = ({ bal }) => {
 
   return (
     <motion.div
-      className="fixed top-16 flex flex-col right-0 left-0"
+      className="fixed top-16 flex flex-col right-0 left-0 "
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}

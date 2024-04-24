@@ -63,11 +63,7 @@ const Menu = () => {
             <div className="w-3/6 h-full flex justify-start pl-8 text-2xl font-bold items-center">
               Our Menu
             </div>
-            <motion.div
-              className="w-3/6 h-full flex justify-end items-center mr-8 text-xl"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
+            <motion.div className="w-3/6 h-full flex justify-end items-center mr-8 text-xl">
               <FaSearch
                 className=""
                 onClick={() => {
@@ -109,7 +105,7 @@ const Menu = () => {
           <div className="h-12 text-2xl font-bold flex justify-start items-center pl-4">
             BREAKFAST
           </div>
-          <div className="h-full mx-2 mt-2 overflow-auto">
+          <div className="h-full mx-2 mt-2 overflow-auto md:grid md:grid-cols-2">
             {!loading & (filteredSearchMemoized !== undefined) ? (
               filteredSearchMemoized.map((item, index) => (
                 <Bcard key={index} item={item} />

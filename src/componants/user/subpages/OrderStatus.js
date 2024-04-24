@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import OrderListItem from "../UI/OrderListItem";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import useOrders from "../../../hooks/useOrders";
 const OrderStatus = () => {
   const { orderId } = useParams();
-
   const auth = useSelector((state) => state.auth.auth);
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,9 +13,9 @@ const OrderStatus = () => {
       navigate("/login");
     }
   }, [auth, navigate]);
-  const orders = useOrders();
-  
 
+  const orders = useOrders();
+  const order = orders.data.find((order) => order._id === orderId);
   return (
     <div className=" py-8 px-6 fixed top-0 left-0 right-0 bottom-0 overflow-auto flex flex-col">
       <Link to="/orders" className="text-2xl font-bold">
@@ -25,38 +24,103 @@ const OrderStatus = () => {
       <div className="my-4 text-2xl font-bold font-serif"> Order Summery </div>
       <div className=" p-4">
         <div class="flex flex-col space-y-8">
-          <div class="flex space-x-4 items-center">
-            <div class="rounded-full h-6 w-6 bg-blue-500 flex items-center justify-center">
-              <span class="text-white text-sm font-bold">1</span>
+          {order.status === "new" ||
+          order.status === "completed" ||
+          order.status === "pending" ||
+          order.status === "cancelled" ||
+          order.status === "ready" ? (
+            // Set the statusOfOrder to the JSX element
+
+            <div className="flex space-x-4 items-center">
+              <div className="rounded-full h-6 w-6 bg-blue-500 flex items-center justify-center">
+                <span className="text-white text-sm font-bold">1</span>
+              </div>
+              <h2 className="text-lg font-medium text-gray-800 line-through">
+                Order Placed
+              </h2>
             </div>
-            <h2 class="text-lg font-medium text-gray-800 line-through">
-              Order Placed
-            </h2>
-          </div>
-          <div class="flex space-x-4 items-center">
-            <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
-              <span class="text-white text-sm font-bold">2</span>
+          ) : (
+            <div class="flex space-x-4 items-center">
+              <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
+                <span class="text-white text-sm font-bold">3</span>
+              </div>
+              <h2 class="text-lg font-medium text-gray-800">Order Placed</h2>
             </div>
-            <h2 class="text-lg font-medium text-gray-800">Order Accepted</h2>
-          </div>
-          <div class="flex space-x-4 items-center">
-            <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
-              <span class="text-white text-sm font-bold">3</span>
+          )}
+          {order.status === "completed" ||
+          order.status === "pending" ||
+          order.status === "cancelled" ||
+          order.status === "ready" ? (
+            // Set the statusOfOrder to the JSX element
+
+            <div className="flex space-x-4 items-center">
+              <div className="rounded-full h-6 w-6 bg-blue-500 flex items-center justify-center">
+                <span className="text-white text-sm font-bold">2</span>
+              </div>
+              <h2 className="text-lg font-medium text-gray-800 line-through">
+                Order Cooking
+              </h2>
             </div>
-            <h2 class="text-lg font-medium text-gray-800">Order Cooking</h2>
-          </div>
-          <div class="flex space-x-4 items-center">
-            <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
-              <span class="text-white text-sm font-bold">4</span>
+          ) : (
+            <div class="flex space-x-4 items-center">
+              <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
+                <span class="text-white text-sm font-bold">2</span>
+              </div>
+              <h2 class="text-lg font-medium text-gray-800">Order Cooking</h2>
             </div>
-            <h2 class="text-lg font-medium text-gray-800">Ready to Pickup</h2>
-          </div>
-          <div class="flex space-x-4 items-center">
-            <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
-              <span class="text-white text-sm font-bold">5</span>
+          )}
+          {order.status === "completed" ||
+          order.status === "cancelled" ||
+          order.status === "ready" ? (
+            // Set the statusOfOrder to the JSX element
+
+            <div className="flex space-x-4 items-center">
+              <div className="rounded-full h-6 w-6 bg-blue-500 flex items-center justify-center">
+                <span className="text-white text-sm font-bold">3</span>
+              </div>
+              <h2 className="text-lg font-medium text-gray-800 line-through">
+                Order Ready to pickup
+              </h2>
             </div>
-            <h2 class="text-lg font-medium text-gray-800">Order Complted</h2>
-          </div>
+          ) : (
+            <div class="flex space-x-4 items-center">
+              <div class="rounded-full h-6 w-6 bg-gray-300 flex items-center justify-center">
+                <span class="text-white text-sm font-bold">3</span>
+              </div>
+              <h2 class="text-lg font-medium text-gray-800">
+                {" "}
+                Order ready to Pickup
+              </h2>
+            </div>
+          )}
+          {order.status === "completed" ? (
+            // Set the statusOfOrder to the JSX element
+
+            <div className="flex space-x-4 items-center">
+              <div className="rounded-full h-6 w-6 bg-green-500 flex items-center justify-center">
+                <span className="text-white text-sm font-bold">4</span>
+              </div>
+              <h2 className="text-lg font-medium text-green-800 line-through">
+                Order Completed
+              </h2>
+            </div>
+          ) : (
+            ""
+          )}
+          {order.status === "cancelled" ? (
+            // Set the statusOfOrder to the JSX element
+
+            <div className="flex space-x-4 items-center">
+              <div className="rounded-full h-6 w-6 bg-red-500 flex items-center justify-center">
+                <span className="text-white text-sm font-bold">4</span>
+              </div>
+              <h2 className="text-lg  text-red-800 font-bold line-through">
+                Order Cecelled
+              </h2>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="border flex flex-col border-black rounded-xl px-4">
@@ -66,9 +130,7 @@ const OrderStatus = () => {
           </div>
           {orders.data.map((order) => {
             if (order._id === orderId) {
-              
               return order.products.map((item) => {
-                
                 return (
                   <OrderListItem
                     item_name={item.productName}

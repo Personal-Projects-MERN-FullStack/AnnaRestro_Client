@@ -111,7 +111,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="h-full w-full mt-20 overflow-auto">
+      <div className="h-full w-full mt-20 overflow-auto md:grid md:grid-cols-4 md:gap-4">
         {basket.map((item) => (
           <Cartitem key={item.id} item={item} />
         ))}

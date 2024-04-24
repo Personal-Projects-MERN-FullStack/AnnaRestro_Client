@@ -29,7 +29,7 @@ const OrderItem = ({ item }) => {
         exit={{ opacity: 0, y: 20 }} // Animation when component unmounts
         transition={{ duration: 0.5 }} // Transition duration
         onClick={onOrderClickHandler}
-        className="mx-4 border-2 border-gray-400 mt-4 h-40 rounded-xl flex flex-col" // Adjusted height to 40px
+        className="mx-4 border-2 md:cursor-pointer border-gray-400 mt-4 md:mt-0 h-40 rounded-xl flex flex-col" // Adjusted height to 40px
       >
         <div className="flex justify-center items-center h-3/6">
           <div className="px-4 w-3/6 h-full flex justify-start items-center p-1 text-green-600">

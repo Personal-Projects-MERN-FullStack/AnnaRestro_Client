@@ -34,7 +34,6 @@ import Reports from "./componants/sadmin/pages/Reports";
 // User Dashboard Components
 const UserProfile = () => <div>User Profile</div>;
 
-
 function AppRoutes() {
   const dispatch = useDispatch();
   const [start, setstart] = useState(0);
@@ -67,7 +66,7 @@ function AppRoutes() {
           {notify.active && <Notification />}
           <Outlet />
 
-          <div className="md:fixed text-6xl md:bottom-0 md:top-0 flex-col md:left-0 md:right-0 md:bg-black md:h-screen md:w-full invisible md:visible flex justify-center text-white items-center">
+          {/* <div className="md:fixed text-6xl md:bottom-0 md:top-0 flex-col md:left-0 md:right-0 md:bg-black md:h-screen md:w-full invisible md:visible flex justify-center text-white items-center">
             <div class=" flex justify-center h-[300px] w-[160px] border border-4 border-black rounded-2xl bg-gray-50">
               <span class="border border-black bg-black w-20 h-2 rounded-br-xl rounded-bl-xl"></span>
 
@@ -75,7 +74,7 @@ function AppRoutes() {
               <span class="absolute -right-2 bottom-36 border border-4 border-black h-10 rounded-md"></span>
             </div>
             <div className="text-white text-xl">MOBILE VIEW ONLY</div>
-          </div>
+          </div> */}
 
           <Navbar />
           {/* <Notifcation/> */}
@@ -134,7 +133,11 @@ function AppRoutes() {
     },
     {
       path: "/superadmin",
-      element:<Structure><Outlet /></Structure> ,
+      element: (
+        <Structure>
+          <Outlet />
+        </Structure>
+      ),
       children: [
         { path: "", element: <SuperAdmin /> },
         { path: "profile", element: <Orders /> },

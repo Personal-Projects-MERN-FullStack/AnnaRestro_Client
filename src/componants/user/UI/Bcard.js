@@ -37,8 +37,8 @@ const Bcard = ({ item }) => {
     >
       <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="w-full font-bold m-[8px]">{item.productName}</div>
       <div className="flex w-full h-full">
-        <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="w-3/6 h-full flex justify-center items-center">
-          <img src={`${item.imageUrl}`} className="" alt={item.imageUrl} />
+        <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="w-3/6 h-full  flex justify-center items-center ">
+          <img src={`${item.imageUrl}`} className="md:w-5/6 md:h-5/6 " alt={item.imageUrl} />
         </div>
         <div className="w-3/6 h-full flex flex-col justify-start pl-2 pt-2 items-start">
           <div className="text-xs text-gray-400">{item.desc}</div>
