@@ -18,7 +18,10 @@ const Sidebar = ({ data }) => {
         />
         <div>
           <h2 className="text-lg font-semibold">AnnaRestro</h2>
-          <span className="text-sm">Super Admin</span>
+          <span className="text-sm">
+            {Object.keys(sadmin).length !== 0 ? sadmin.email : " ****@****.com"}
+
+          </span>
         </div>
       </div>
 
@@ -63,11 +66,18 @@ const Sidebar = ({ data }) => {
 
       {/* Footer Section */}
       <div className="p-4 border-t border-gray-700">
-        {(sadmin !== undefined )?  <button    onClick={() => {
-            dispatch(sadminlogout());
-          }} className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md w-full">
-              Logout
-            </button> :""}
+        {Object.keys(sadmin).length !== 0 ? (
+          <button
+            onClick={() => {
+              dispatch(sadminlogout());
+            }}
+            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md w-full"
+          >
+            Logout
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
