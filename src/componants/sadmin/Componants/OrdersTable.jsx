@@ -48,40 +48,44 @@ const OrdersTable = () => {
   // Render table with orders data
   return (
     <div class="relative overflow-x-auto">
-      <table class="w-full text-sm text-left rtl:text-right  text-gray-400">
-        <thead class="text-xs  uppercase  bg-gray-700 text-black">
-          <tr>
-            <th scope="col" className="px-6 mx-auto py-3">
-              Order Id
-            </th>
-            <th scope="col" className="px-6 mx-auto py-3">
-              status
-            </th>
-            <th scope="col" className="px-6 mx-auto py-3">
-              status
-            </th>
-            <th scope="col" className="px-6 mx-auto py-3">
-              Price
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+       <table className="w-full text-sm text-left border rounded-2xl rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 rounded-2xl uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+               OrderId
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3">
+               Date
+              </th>
+              <th scope="col" className="px-6 py-3">
+               Amount
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
           {orders.map((order)=>{
             return (<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th
               scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
              #{order._id}
             </th>
-            <td class="px-6 py-4">{order.status}</td>
-            <td class="px-6 py-4">{order.total}</td>
-            <td class="px-6 py-4">$2999</td>
+            <td class="px-6 py-4 text-center">{order.status}</td>
+            <td class="px-6 py-4 text-center">{order.createdAt}</td>
+            <td class="px-6 py-4 text-center">₹{order.total}</td>
           </tr>
         )
           })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+
     </div>
   );
 };

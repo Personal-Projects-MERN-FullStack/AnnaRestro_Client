@@ -16,15 +16,15 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className="fixed bottom-0 left-0 right-0 "
+      className="fixed bottom-0 left-0 right-0  "
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex justify-around -black pb-4">
+      <div className="flex justify-around -black pb-4 ">
         <div className="item1 h-12 flex items-center justify-center">
           <span
-            className="text-2xl  border-2 -black rounded-full p-2 bg-blue-900 text-white"
+            className="text-2xl  border-2 -black rounded-full p-2 bg-blue-900 text-white cursor-pointer"
             onClick={() => {
               setMenu(!menu);
             }}
