@@ -13,8 +13,8 @@ const Products = () => {
   }, [sadmin, navigate]);
   return (
     <div>
-      <div className=" font-bold text-yellow-300 h-12 my-4 flex justify-start items-center pl-4 text-3xl">
-        Orders Data
+        <div className=" font-bold text-yellow-300 h-12 my-4 flex justify-start items-center pl-4 text-3xl">
+        Products Data  
       </div>
       <div>
         <ProductTable />
