@@ -30,6 +30,7 @@ import Admins from "./componants/sadmin/pages/Admins";
 import Products from "./componants/sadmin/pages/Products";
 import Reports from "./componants/sadmin/pages/Reports";
 import NotificationPage from "./componants/user/NotificationPage";
+import Slogin from "./componants/sadmin/pages/Slogin";
 // Home Components
 
 // User Dashboard Components
@@ -147,6 +148,7 @@ function AppRoutes() {
         { path: "products", element: <Products /> },
         { path: "reports", element: <Reports /> },
         { path: "admins", element: <Admins /> },
+        { path: "login", element: <Slogin /> },
       ],
     },
     {

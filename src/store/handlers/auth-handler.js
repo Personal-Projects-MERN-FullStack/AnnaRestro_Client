@@ -4,7 +4,8 @@ let initialState = {
     auth:false,
     authtoken:"",
     user:{},
-    admin:{}
+    admin:{},
+    sadmin:{}
 }
 const authhandler = createSlice({
     name : "auth",
@@ -25,8 +26,14 @@ const authhandler = createSlice({
         setadminuser(state,action,payload){
             state.admin = action.payload
         },
+        setsadminuser(state,action,payload){
+            state.sadmin = action.payload
+        },
         adminLogout(state,action,payload){
             state.admin = {}
+        },
+        sadminLogout(state,action,payload){
+            state.sadmin = {}
         },
     }
 })

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import NotificationItem from "./UI/Wallet/NotificationItem";
 import { useSelector } from "react-redux";
@@ -8,6 +8,14 @@ import { motion } from "framer-motion";
 
 const NotificationPage = () => {
   const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth.auth);
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!auth) {
+      navigate("/login");
+    }
+  }, [auth, navigate]);
+
   async function fetchnotitfication() {
     try {
       const response = await fetch(

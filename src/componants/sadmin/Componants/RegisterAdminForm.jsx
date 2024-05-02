@@ -30,7 +30,8 @@ const RegisterAdminForm = () => {
   };
 
   return (
-    <div className="my-2 rounded-2xl flex justify-center items-center">
+    <div className="my-2 rounded-2xl flex justify-center items-center flex-col">
+      <div className="my-2 text-green-800 font-bold text-xl">ADD NEW ADMIN</div>
       <form onSubmit={handleSubmit} className="space-x-2 px-8 pt-6 pb-8 mb-4 flex justify-around">
         <div className="mb-4 flex">
           <input

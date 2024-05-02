@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dashitem from "../Componants/Dashitem";
 import { IoPersonAddSharp } from "react-icons/io5";
 
 import getOrderStatistics from "../funcs/func";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 async function fetchOrders() {
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
@@ -25,6 +27,13 @@ async function fetchOrders() {
   }
 }
 const SuperAdmin = () => {
+  const navigate = useNavigate();
+  const sadmin = useSelector((state) => state.auth.sadmin);
+  useEffect(() => {
+    if (Object.keys(sadmin).length === 0) {
+      navigate("/superadmin/login");
+    }
+  }, [sadmin, navigate]);
   const {
     data: orders,
     isLoading,

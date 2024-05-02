@@ -1,9 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import Tablerow from "../Componants/subcomponants/Tablerow";
 import RegisterAdminForm from "../Componants/RegisterAdminForm";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const Admins = () => {
+  
+  const navigate = useNavigate();
+  const sadmin = useSelector((state) => state.auth.sadmin);
+  useEffect(() => {
+    if (Object.keys(sadmin).length === 0) {
+      navigate("/superadmin/login");
+    }
+  }, [sadmin, navigate]);
   async function fetchOrders() {
     try {
       const response = await fetch(
@@ -35,8 +45,12 @@ const Admins = () => {
     refetchInterval: 5000,
   });
 
+
   return (
     <div>
+      <div className=" font-bold text-yellow-300 h-12 my-4 flex justify-start items-center pl-4 text-3xl">
+        Admin Data
+      </div>
       <div className="relative overflow-x-auto p-4 rounded-2xl">
         <table className="w-full text-sm text-left border rounded-2xl rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 rounded-2xl uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
