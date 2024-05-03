@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 
@@ -19,7 +18,6 @@ function convertDateFormat(dateString) {
 
 const OrderItem = ({ item, orders }) => {
   const admin = useSelector((state) => state.auth.admin);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(item.status); // State to store selected status
 
@@ -72,7 +70,7 @@ const OrderItem = ({ item, orders }) => {
             ₹ {item.total}
           </div>
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-4 h-40 overflow-auto ">
           <div>Order Details</div>
           {item.products.map((product) => (
             <li key={product._id}>
@@ -101,13 +99,13 @@ const OrderItem = ({ item, orders }) => {
           <div className="w-3/6 h-full flex items-center justify-start pl-4 border-r-2 text-xl font-semibold text-gray-700">
             Status
           </div>
-          <div className="w-3/6 h-full focus:border-none flex items-center justify-start pl-4">
+          <div className="w-3/6 h-full focus:border-none flex items-center justify-start ">
             {!loading ? (
-              item.status !== "completed" ? (
+              (item.status !== "completed" && item.status !== "cancelled") ? (
                 <select
                   onChange={onStatusChangeHandler}
                   value={selectedStatus}
-                  className="block h-full rounded-xl w-full sm:text-sm border-gray-300 mb-4"
+                  className="rounded-xl w-full h-full sm:text-sm  "
                 >
                   <optgroup label="Order Status">
                     <option value="new">New</option>
@@ -118,8 +116,8 @@ const OrderItem = ({ item, orders }) => {
                   </optgroup>
                 </select>
               ) : (
-                <div className="text-xl font-bold text-green-500">
-                  COMPLETED
+                <div className="text-xl flex  items-center justify-center   w-full font-bold text-green-500">
+                  {item.status}
                 </div>
               )
             ) : (

@@ -68,7 +68,7 @@ const AOrders = () => {
           <motion.div // Wrap the section buttons in motion.div to apply transitions
             whileHover={{ scale: 1.05 }} // Animation on hover
             whileTap={{ scale: 0.95 }} // Animation when clicked
-            className={`p-2 px-3  text-sm font-semibold ${
+            className={`p-2 px-3 cursor-pointer  text-sm font-semibold ${
               section === 4 ? "rounded-full bg-blue-600 text-white" : ""
             }`}
             onClick={() => setSection(4)}
@@ -78,7 +78,7 @@ const AOrders = () => {
           <motion.div // Wrap the section buttons in motion.div to apply transitions
             whileHover={{ scale: 1.05 }} // Animation on hover
             whileTap={{ scale: 0.95 }} // Animation when clicked
-            className={`p-2 px-3  text-sm font-semibold ${
+            className={`p-2 cursor-pointer px-3  text-sm font-semibold ${
               section === 0 ? "rounded-full bg-blue-600 text-white" : ""
             }`}
             onClick={() => setSection(0)}
@@ -88,7 +88,7 @@ const AOrders = () => {
           <motion.div // Wrap the section buttons in motion.div to apply transitions
             whileHover={{ scale: 1.05 }} // Animation on hover
             whileTap={{ scale: 0.95 }} // Animation when clicked
-            className={`p-2 px-3  text-sm font-semibold ${
+            className={`p-2 cursor-pointer px-3  text-sm font-semibold ${
               section === 5 ? "rounded-full bg-blue-600 text-white" : ""
             }`}
             onClick={() => setSection(5)}
@@ -98,7 +98,7 @@ const AOrders = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`p-2 px-3  text-sm font-semibold ${
+            className={`p-2 cursor-pointer px-3  text-sm font-semibold ${
               section === 1 ? "rounded-full bg-blue-600 text-white" : ""
             }`}
             onClick={() => setSection(1)}
@@ -108,7 +108,7 @@ const AOrders = () => {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`p-2 px-3  text-sm font-semibold ${
+            className={`p-2 cursor-pointer px-3  text-sm font-semibold ${
               section === 2 ? "rounded-full bg-blue-600 text-white" : ""
             }`}
             onClick={() => setSection(2)}
@@ -118,7 +118,7 @@ const AOrders = () => {
         </div>
       </div>
       <motion.div
-        className="overflow-y-auto space-y-8 h-5/6 md:grid md:grid-cols-2 md:gap-3 md:space-y-0 "
+        className="overflow-y-auto space-y-8 h-5/6 md:grid md:grid-cols-3 md:gap-3 md:space-y-0 "
         initial={{ opacity: 0 }} // Initial animation state
         animate={{ opacity: 1 }} // Animation when component mounts
         transition={{ delay: 0.2 }} // Transition delay

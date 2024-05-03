@@ -100,7 +100,7 @@ const Dasboard = () => {
         Welcome , {admin.username}
       </div>
       {/* Small DashBoard */}
-      <div className="flex flex-col h-full px-6">
+      <div className="flex flex-col h-full px-6 md:grid md:grid-cols-2 md:gap-3">
         {!orders.isLoading && (
           <>
             <Dashitem

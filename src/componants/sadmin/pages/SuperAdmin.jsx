@@ -80,8 +80,8 @@ const SuperAdmin = () => {
             />
             <Dashitem
               logo={<IoPersonAddSharp />}
-              num={"₹" + getOrderStatistics(orders).totalEarnings}
-              title="Total Earnings"
+              num={getOrderStatistics(orders).totalOrders}
+              title="Total Orders"
             />
           </div>
         </div>

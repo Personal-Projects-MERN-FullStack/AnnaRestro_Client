@@ -13,7 +13,7 @@ const Navbar = () => {
       </div>
       <div className="w-3/6 h-full space-x-2 flex justify-end items-center pr-">
         <div className="text-2xl mx-2 cursor-pointer">
-          <CgProfile />
+          {/* <CgProfile /> */}
         </div>
         <div className="text-2xl mx-2 cursor-pointer">
         {Object.keys(sadmin).length !== 0 ? (
