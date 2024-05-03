@@ -94,7 +94,7 @@ const Cart = () => {
             <IoIosArrowBack />
           </Link>
         </div>
-        <div className="flex justify-center items-center w-2/6 h-full font-semibold">
+        <div className="flex justify-center text-md  items-center w-2/6 h-full font-bold">
           Review Items
         </div>
         <div className="flex text-xl justify-end items-center w-2/6 h-full pr-4">
@@ -118,7 +118,7 @@ const Cart = () => {
       </div>
 
       {basket.length > 0 && (
-        <div className="left-0 right-0 bottom-0 text-black flex bg-gray-100 h-14">
+        <div className="left-0 right-0 bottom-0 text-black flex bg-gray-100 h-14 ">
           <div className="w-3/6 flex justify-center flex-col items-start pl-4">
             <div>
               Total:{" "}
@@ -146,6 +146,8 @@ const Cart = () => {
           </div>
         </div>
       )}
+
+      <div className="h-[100px]"></div>
     </motion.div>
   );
 };

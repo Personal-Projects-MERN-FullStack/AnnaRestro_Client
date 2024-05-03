@@ -127,7 +127,7 @@ function AppRoutes() {
     },
     {
       path: "/admin",
-      element: <Outlet />,
+      element: <Outlet> {notify.active && <Notification />}</Outlet>,
       children: [
         { path: "", element: <Dashboard /> },
         { path: "Orders", element: <AOrders /> },
@@ -138,6 +138,7 @@ function AppRoutes() {
       path: "/superadmin",
       element: (
         <Structure>
+           {notify.active && <Notification />}
           <Outlet />
         </Structure>
       ),

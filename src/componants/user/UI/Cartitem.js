@@ -3,7 +3,7 @@ import QtyManager from "./QtyManager";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { ui } from "../../../store/handlers/Ui-handler";
-
+const discount= [1,2,3,4,5,6]
 const Cartitem = ({ item }) => {
   const dispatch = useDispatch()
   const auth = useSelector(state=>state.auth.auth)
@@ -67,7 +67,7 @@ const Cartitem = ({ item }) => {
         <div className="font-semibold text-xl">{item.productName}</div>
         <div>
           <span className="line-through pr-2 text-gray-500">
-            ₹{item.price - 2}{" "}
+            ₹{item.price + Math.floor(Math.random() * discount.length)}
           </span>
           ₹{item.price}
         </div>

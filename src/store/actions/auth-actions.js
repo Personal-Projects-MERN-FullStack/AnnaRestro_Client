@@ -18,14 +18,15 @@ export const LoginHandler = (logindata) => {
       dispatch(
         ui.SetNotification({
           active: true,
-          msg: responseData.error,
+          msg: "Please Regsiter Yourself First",
+       
         })
       );
     } else {
       dispatch(auth.setuser(responseData));
       localStorage.setItem("user", JSON.stringify(responseData));
       dispatch(
-        ui.SetNotification({ active: true, msg: "Logged in Successfullyyyyyy" })
+        ui.SetNotification({ active: true, msg: "Enjoy Your Meal" })
       );
       dispatch(auth.Login());
     }

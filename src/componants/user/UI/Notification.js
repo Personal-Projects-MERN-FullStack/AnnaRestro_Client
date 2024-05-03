@@ -26,7 +26,7 @@ const Notification = () => {
             href="a"
             className="text-slate-500 hover:text-slate-700 text-sm inline-flex space-x-1 items-center"
           >
-            <Link to="{ninfo.path}">Testing</Link>
+            <Link to={"/"+Notifcation.path}>{Notifcation.path}</Link>
             <svg
               className="w-3 h-3"
               fill="none"

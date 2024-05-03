@@ -16,6 +16,7 @@ const Bcard = ({ item }) => {
         ui.SetNotification({
           active: true,
           msg: "Please Login To add Basket",
+          paht:'userlogin'
         })
       );
     } else {
@@ -23,7 +24,8 @@ const Bcard = ({ item }) => {
       dispatch(
         ui.SetNotification({
           active: true,
-          msg: "Item Added to Cart",
+          msg: "Item Added to backet",
+          path:"cart"
         })
       );
     }

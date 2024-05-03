@@ -5,7 +5,6 @@ import Scard from "./UI/Scard";
 import Bcard from "./UI/Bcard";
 import Search from "./subpages/Search";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router";
 
 const Menu = () => {
   const menu = useSelector((state) => state.menu.menu);
@@ -13,7 +12,7 @@ const Menu = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSearch, setFilteredSearch] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     if (!menu.isLoading) {

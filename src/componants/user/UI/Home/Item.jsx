@@ -26,6 +26,7 @@ const Item = ({ image, name, qty, price, item }) => {
         ui.SetNotification({
           active: true,
           msg: "Please Login To add Basket",
+          path:"userlogin"
         })
       );
     } else {
@@ -34,6 +35,7 @@ const Item = ({ image, name, qty, price, item }) => {
         ui.SetNotification({
           active: true,
           msg: "Item Added to Cart",
+          path:"cart"
         })
       );
     }
