@@ -46,7 +46,7 @@ const Transaction = ({ trans }) => {
         <div className="text-sm font-bold">
           {createShortProductNameList(trans.products)}
         </div>
-        <div className="text-xs text-gray-500">- ₹{trans.total} coins</div>
+        <div className={`text-xs text-gray-500 ${trans.status === "cancelled" ? `text-red-900 font-semibold` : `text-green-800 font-semibold`}`}>{trans.status === "cancelled" ? `+ ₹ ${trans.total} coins` : `- ₹ ${trans.total} coins`}</div>
       </div>
       <div className="w-5/12 text-xs text-black   h-full justify-center items-end px-2 flex flex-col">
         <div className=" text-gray-900">

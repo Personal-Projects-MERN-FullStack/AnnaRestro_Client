@@ -22,6 +22,7 @@ const Admins = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer "+sadmin.authtoken,
           },
           credentials: "same-origin",
         }

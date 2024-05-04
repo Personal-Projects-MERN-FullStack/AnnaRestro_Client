@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import useOrders from "../../../hooks/useOrders";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import OrderItem from "../componant/OrderItem";
@@ -22,6 +21,7 @@ const AOrders = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer "+admin.authtoken,
         },
         credentials: "same-origin",
       });

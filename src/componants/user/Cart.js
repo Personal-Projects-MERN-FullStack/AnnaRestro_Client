@@ -36,6 +36,7 @@ const Cart = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + userdata.authtoken,
           },
           body: JSON.stringify({
             customer: customerId,
@@ -47,10 +48,14 @@ const Cart = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message);
-      }
-
-      if (response.ok) {
+        console.log(errorData);
+        dispatch(
+          ui.SetNotification({
+            active: true,
+            msg: errorData.error,
+          })
+        );
+      }else {
         dispatch(
           ui.SetNotification({
             active: true,
@@ -59,12 +64,16 @@ const Cart = () => {
         );
         dispatch(Clearbasket());
         setPlacing(false);
-      } else {
-        setPlacing(false);
+     
       }
     } catch (error) {
       setPlacing(false);
-      alert(error);
+      dispatch(
+        ui.SetNotification({
+          active: true,
+          msg: error,
+        })
+      );
     }
   }
 

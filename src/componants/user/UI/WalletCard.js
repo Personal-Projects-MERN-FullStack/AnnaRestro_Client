@@ -20,6 +20,7 @@ const WalletCard = ({ bal }) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.authtoken}`,
         },
         credentials: "same-origin",
       });
@@ -70,12 +71,14 @@ const WalletCard = ({ bal }) => {
     );
 
     if (!res) {
-      setNotification("Failed to load Razorpay. Please check your internet connection.");
+      setNotification(
+        "Failed to load Razorpay. Please check your internet connection."
+      );
       return;
     }
 
     const options = {
-      key: "rzp_test_hzFQkenT974bpv",
+      key: "rzp_test_Fi0R6nv5oCjMYn",
       currency: "INR",
       amount: amount * 100,
       name: "Vibe Store",
@@ -83,9 +86,16 @@ const WalletCard = ({ bal }) => {
       modal: true,
       handler: function (response) {
         if (response.razorpay_payment_id) {
-          addMoneyToWallet(user.user.id, amount)
+          const id = response.razorpay_payment_id;
+          addMoneyToWallet(user.user.id, amount, id)
             .then((data) => {
               console.log("Updated user:", data);
+              dispatch(
+                ui.SetNotification({
+                  active: true,
+                  msg: "Payment Success.. Your Wallet Update Soon....",
+                })
+              );
             })
             .catch((error) => {
               console.log(error);
@@ -95,7 +105,6 @@ const WalletCard = ({ bal }) => {
                   msg: "Error adding money to wallet. Please try again later.",
                 })
               );
-              setNotification("Error adding money to wallet. Please try again later.");
             });
         } else {
           dispatch(
@@ -104,7 +113,6 @@ const WalletCard = ({ bal }) => {
               msg: "Payment failed. Please try again.",
             })
           );
-          // setNotification();
         }
       },
       prefill: {
@@ -119,7 +127,7 @@ const WalletCard = ({ bal }) => {
     paymentObject.open();
   };
 
-  async function addMoneyToWallet(userId, amountToAdd) {
+  async function addMoneyToWallet(userId, amountToAdd, razorpay_payment_id) {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/wallet/addmoney/${userId}`,
@@ -127,17 +135,24 @@ const WalletCard = ({ bal }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + user.authtoken,
           },
-          body: JSON.stringify({ amount: amountToAdd }),
+          body: JSON.stringify({ amount: amountToAdd, razorpay_payment_id }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errorData = await response.json();
+        dispatch(
+          ui.SetNotification({
+            active: true,
+            msg: errorData.error,
+          })
+        );
+      } else {
+        const data = await response.json();
+        return data;
       }
-
-      const data = await response.json();
-      return data;
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
       throw error;
@@ -149,7 +164,6 @@ const WalletCard = ({ bal }) => {
     const amount = parseFloat(amountStr);
 
     if (isNaN(amount) || amount <= 0) {
-      
       setNotification("Please enter a valid amount.");
       return;
     }
