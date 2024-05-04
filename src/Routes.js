@@ -127,7 +127,7 @@ function AppRoutes() {
     },
     {
       path: "/admin",
-      element: <Outlet> {notify.active && <Notification />}</Outlet>,
+      element: <div>{notify.active && <Notification />}<Outlet> </Outlet></div>,
       children: [
         { path: "", element: <Dashboard /> },
         { path: "Orders", element: <AOrders /> },

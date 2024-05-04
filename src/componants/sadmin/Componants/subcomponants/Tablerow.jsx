@@ -1,7 +1,7 @@
 import React from "react";
 
 const Tablerow = ({ data }) => {
-  console.log(data)
+  // console.log(data)
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <th

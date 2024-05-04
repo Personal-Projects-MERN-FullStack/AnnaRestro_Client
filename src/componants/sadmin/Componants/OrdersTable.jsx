@@ -2,30 +2,34 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import { useSelector } from "react-redux";
 
 // Define the function to fetch orders data
-async function fetchOrders() {
-  try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch orders data");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching orders:", error.message);
-    throw error;
-  }
-}
 
 const OrdersTable = () => {
+  const sadmin = useSelector((state) => state.auth.sadmin);
+  async function fetchOrders() {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+sadmin.authtoken,
+        },
+        credentials: "same-origin",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch orders data");
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching orders:", error.message);
+      throw error;
+    }
+  }
+  
   // Fetch orders data using useQuery
   const {
     data: orders,

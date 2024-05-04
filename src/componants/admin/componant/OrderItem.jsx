@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ui } from "../../../store/handlers/Ui-handler";
 
 // Function to convert date format
 function convertDateFormat(dateString) {
@@ -20,7 +21,7 @@ const OrderItem = ({ item, orders }) => {
   const admin = useSelector((state) => state.auth.admin);
   const [loading, setLoading] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(item.status); // State to store selected status
-
+  const dispatch = useDispatch()
   const updateOrderStatus = async (orderId, newStatus) => {
     setLoading(true);
     try {
@@ -30,16 +31,31 @@ const OrderItem = ({ item, orders }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer "+admin.authtoken,
           },
           body: JSON.stringify({ status: newStatus, adminid: admin.email }),
         }
       );
       if (!response.ok) {
         setLoading(false);
-        throw new Error("Failed to update order status");
+        const errorData = await response.json();
+
+        dispatch(
+          ui.SetNotification({
+            active: true,
+            msg: errorData.error,
+          })
+        );
+        // throw new Error("Failed to update order status");
+      }else{
+
+        dispatch(
+          ui.SetNotification({
+            active: true,
+            msg: "Order Updated ",
+          })
+        );
       }
-      setLoading(false);
-      // Optionally handle success, like showing a success message
     } catch (error) {
       setLoading(false);
       console.error("Error updating order status:", error.message);

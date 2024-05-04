@@ -39,6 +39,8 @@ const Dasboard = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          
+            "Authorization": "Bearer "+admin.authtoken,
         },
         credentials: "same-origin",
       });

@@ -6,29 +6,31 @@ import getOrderStatistics from "../funcs/func";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-async function fetchOrders() {
-  try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
-    });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch orders data");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching orders:", error.message);
-    throw error;
-  }
-}
 const SuperAdmin = () => {
   const navigate = useNavigate();
   const sadmin = useSelector((state) => state.auth.sadmin);
+  async function fetchOrders() {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer "+sadmin.authtoken,
+        },
+        credentials: "same-origin",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch orders data");
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching orders:", error.message);
+      throw error;
+    }
+  }
   useEffect(() => {
     if (Object.keys(sadmin).length === 0) {
       navigate("/superadmin/login");

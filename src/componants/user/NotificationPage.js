@@ -24,6 +24,7 @@ const NotificationPage = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer "+user.authtoken,
           },
           credentials: "same-origin",
         }
