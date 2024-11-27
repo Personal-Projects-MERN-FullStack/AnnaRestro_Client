@@ -29,7 +29,7 @@ const Orders = () => {
         <div className="h-3/6 flex justify-start items-center pl-4 text-2xl font-serif font-bold  w-full">
           My Orders
         </div>
-        <div className="h-3/6 cursor-pointer flex overflow-auto space-x-2 pl-4  justify-start items-center  w-full">
+        <div className="h-3/6 cursor-pointer flex overflow-auto space-x-2 pl-4  justify-start md:justify-center items-center  w-full">
           <motion.div // Wrap the section buttons in motion.div to apply transitions
             whileHover={{ scale: 1.05 }} // Animation on hover
             whileTap={{ scale: 0.95 }} // Animation when clicked
@@ -88,25 +88,50 @@ const Orders = () => {
         animate={{ opacity: 1 }} // Animation when component mounts
         transition={{ delay: 0.2 }} // Transition delay
       >
-        {!orders.isLoading && orders.data.length > 0 ? (
-          orders.data.map((item) => {
-            if (
-              (section === 0 && item.status === "pending") ||
-              (section === 1 && item.status === "completed") ||
-              (section === 2 && item.status === "cancelled") ||
-              (section === 5 && item.status === "ready") ||
-              (section === 4 && item.status === "new")
-            ) {
-              return <OrderItem key={item.id} item={item} />;
-            }
-            return null;
-          })
-        ) : (
-          <div className="flex justify-center items-center h-full">
-            <p className="text-gray-500">No orders to show</p>
-          </div>
-        )}
-        <div></div>
+       {!orders.isLoading ? (
+  (() => {
+    let filteredOrders = [];
+    switch (section) {
+      case 0:
+        filteredOrders = orders.data.filter(item => item.status === "pending");
+        break;
+      case 1:
+        filteredOrders = orders.data.filter(item => item.status === "completed");
+        break;
+      case 2:
+        filteredOrders = orders.data.filter(item => item.status === "cancelled");
+        break;
+      case 5:
+        filteredOrders = orders.data.filter(item => item.status === "ready");
+        break;
+      case 4:
+        filteredOrders = orders.data.filter(item => item.status === "new");
+        break;
+      default:
+        break;
+    }
+
+    if (filteredOrders.length > 0) {
+      return filteredOrders.map(item => (
+        <OrderItem key={item.id} item={item} />
+      ));
+    } else {
+      
+      return (
+        <div className="flex justify-center items-center h-full w-screen">
+          <img src="/annimation/loader.gif" alt={"annimation"} className=""/>
+        </div>
+      );
+    }
+  })()
+) : (
+  <div className="flex justify-center items-center h-screen mt-28">
+  NO ORDERS TO SHOW
+  </div>
+)}
+
+        
+       
       </motion.div>
     </motion.div>
   );

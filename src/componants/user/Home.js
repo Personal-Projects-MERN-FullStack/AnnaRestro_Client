@@ -76,7 +76,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="overflow-x-auto pl-4  items-center space-x-3 flex h-[120px] md:h-[250px] w-full "
+          className="overflow-x-auto pl-4  items-center space-x-3 flex h-[125px] md:h-[250px] w-full "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}

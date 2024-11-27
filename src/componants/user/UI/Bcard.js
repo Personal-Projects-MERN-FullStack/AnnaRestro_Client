@@ -33,8 +33,8 @@ const Bcard = ({ item }) => {
 
   return (
     <motion.div  // Wrap your component in motion.div to apply animations
-      className="h-44 mx-1 my-2 bg-white rounded-xl flex flex-col"
-      whileHover={{ scale: 1.05 }} // Add scale animation on hover
+      className="h-44 mx-1 my-2 bg-white rounded-xl flex flex-col cursor-pointer"
+      whileHover={{ scale: 0.95 }} // Add scale animation on hover
       transition={{ duration: 0.2 }} // Set animation duration
     >
       <div onClick={()=>Navigate(`/menu/product/${item._id}`)} className="w-full font-bold m-[8px]">{item.productName}</div>

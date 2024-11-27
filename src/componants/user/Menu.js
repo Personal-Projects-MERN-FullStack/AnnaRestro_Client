@@ -110,7 +110,9 @@ const Menu = () => {
                 <Bcard key={index} item={item} />
               ))
             ) : (
-              <div>No Data here</div>
+           
+          <img src="/annimation/loader.gif" alt={"annimation"} className=""/>
+      
             )}
           </div>
         </motion.div>
